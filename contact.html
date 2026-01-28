@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+        .page-hero-text { max-width: 640px; }
+        .page-hero-title { font-size: 3.2rem; font-weight: 800; margin-bottom: 1rem; color: var(--heading-color); }
+        .page-hero-subtitle { font-size: 1.2rem; opacity: 0.9; line-height: 1.8; color: var(--text-light); }
+        .contact-hero-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), rgba(255,255,255,0.08)),
+                        linear-gradient(135deg, #9B8D4E, #827743);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero-icon::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 24px;
+            border: 3px dashed rgba(255, 255, 255, 0.7);
+            animation: rotateFoodRing 8s linear infinite;
+        }
+        .contact-hero-icon i {
+            font-size: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-section {
+            padding: 5rem 0;
+        }
+        .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+            gap: 3rem;
+            align-items: flex-start;
+        }
+        .contact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+        }
+        .contact-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            color: #fff;
+            font-size: 1.25rem;
+        }
+        .contact-details h4 {
+            margin: 0 0 0.25rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        .contact-details p {
+            margin: 0;
+            color: var(--text-light);
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+        }
+        @media (max-width: 900px) {
+            .contact-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="our-team.html">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="fuel-retailing.html" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link active">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="page-hero-text">
+                    <h1 class="page-hero-title">Get in Touch</h1>
+                    <p class="page-hero-subtitle">
+                        Reach out to K.A.R Holdings for partnerships, business opportunities, or general inquiries.
+                        Our team is here to help.
+                    </p>
+                </div>
+                <div class="contact-hero-icon" aria-hidden="true">
+                    <i class="fas fa-headset"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-layout">
+                <div class="contact-card">
+                    <h2>Contact Information</h2>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+1 780-485-0055</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>edm@karholdings.ca</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>1230 91 Street Unit#106, Edmonton, AB T6X 0P2</p>
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contactForm" style="margin-top: 2rem;">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="map-wrapper">
+                    <iframe
+                        src="https://www.google.com/maps?q=1230%2091%20Street%20Unit%23106%2C%20Edmonton%2C%20AB%20T6X%200P2&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision & Mission - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Hero similar to Story page with heartbeat lines on right */
+        .page-hero {
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
+        }
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 1fr);
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .page-hero-title {
+            font-size: 3.4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: 0.04em;
+            color: var(--heading-color);
+            text-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+            animation: fadeInUp 1s ease;
+        }
+        .page-hero-subtitle {
+            font-size: 1.1rem;
+            max-width: 34rem;
+            opacity: 0.92;
+            color: var(--text-light);
+            animation: fadeInUp 1s ease 0.15s both;
+        }
+        .vision-hero-text {
+            position: relative;
+        }
+        .vision-hero-text span.badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--orange-accent);
+            margin-bottom: 0.75rem;
+        }
+        .heartbeat-visual {
+            position: relative;
+            justify-self: center;
+            width: min(420px, 100%);
+            height: 220px;
+            overflow: hidden;
+        }
+        .heartbeat-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, rgba(155, 141, 78, 0.25) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(155, 141, 78, 0.18) 1px, transparent 1px);
+            background-size: 18px 18px;
+            opacity: 0.3;
+        }
+        .heartbeat-svg {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .heartbeat-svg polyline {
+            fill: none;
+            stroke: #9B8D4E;
+            stroke-width: 3;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+            stroke-dasharray: 520;
+            stroke-dashoffset: 520;
+            animation: heartbeatStroke 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(155, 141, 78, 0.7));
+        }
+        @keyframes heartbeatStroke {
+            0% { stroke-dashoffset: 520; }
+            40% { stroke-dashoffset: 0; }
+            60% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -520; }
+        }
+        .content-section {
+            padding: 5rem 0;
+        }
+        .vision-mission-card {
+            background: white;
+            padding: 3.25rem 3rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-xl);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(240px, 1fr);
+            gap: 2.5rem;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .vision-mission-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl), 0 18px 40px rgba(15, 23, 42, 0.15);
+        }
+        .vision-mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-primary);
+        }
+        .vision-mission-text {
+            position: relative;
+            z-index: 1;
+        }
+        .vision-mission-card h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .vision-mission-card h2 i {
+            font-size: 2rem;
+        }
+        .vision-mission-card p {
+            font-size: 1.125rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        .vision-mission-image {
+            position: relative;
+            max-width: 320px;
+            justify-self: center;
+        }
+        .vision-mission-image-inner {
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transform-origin: center;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .vision-mission-card:hover .vision-mission-image-inner {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 22px 55px rgba(15, 23, 42, 0.45);
+        }
+        .vision-mission-image-inner img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .goal-card {
+            background: var(--light-color);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .goal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .goal-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link active">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="index.html#management">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#group" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="vision-hero-text">
+                    <span class="badge">Guiding principles</span>
+                    <h1 class="page-hero-title">Our Vision &amp; Mission</h1>
+                    <p class="page-hero-subtitle">
+                        Clear values and direction power every decision we make at K.A.R Holdings, from fuel retailing to
+                        food, property, and investment businesses across Western Canada.
+                    </p>
+                </div>
+                <div class="heartbeat-visual" aria-hidden="true">
+                    <div class="heartbeat-grid"></div>
+                    <svg viewBox="0 0 400 120" preserveAspectRatio="none" class="heartbeat-svg">
+                        <polyline points="0,60 40,60 55,30 70,75 90,50 110,60 135,60 150,45 165,80 185,60 205,60 225,25 245,90 270,40 295,70 320,60 340,30 360,60 400,60" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div class="vision-mission-card">
+                    <div class="vision-mission-text">
+                        <h2><i class="fas fa-eye"></i> Our Vision</h2>
+                        <p>
+                        To be the leading business group in Western Canada, recognized for excellence, innovation, 
+                        and unwavering commitment to customer satisfaction. We envision a future where K.A.R Holdings 
+                        stands as a symbol of trust, quality, and sustainable growth, making a positive impact on 
+                        the communities we serve.
+                        </p>
+                        <p>
+                        Our vision extends beyond business success - we aim to create lasting value for our stakeholders, 
+                        contribute to regional economic development, and build a legacy that inspires future generations 
+                        of entrepreneurs in Western Canada.
+                        </p>
+                    </div>
+                    <div class="vision-mission-image">
+                        <div class="vision-mission-image-inner">
+                            <img src="images/mission/vision statement.png" alt="Our Vision illustration">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vision-mission-card">
+                    <div class="vision-mission-text">
+                        <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+                        <p>
+                        To deliver exceptional products and services across all our business divisions while maintaining 
+                        the highest standards of quality, integrity, and customer service. We are committed to creating 
+                        value for our customers, employees, partners, and communities through innovative solutions, 
+                        responsible business practices, and continuous improvement.
+                        </p>
+                        <p>
+                        We strive to build strong relationships with our stakeholders, foster a culture of excellence 
+                        within our organization, and contribute positively to the economic and social development of 
+                        Western Canada. Our mission is powered by our core values of integrity, excellence, community 
+                        engagement, and innovation.
+                        </p>
+                    </div>
+                    <div class="vision-mission-image">
+                        <div class="vision-mission-image-inner">
+                            <img src="images/mission/mission statement.png" alt="Our Mission illustration">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--dark-color);">Strategic Goals</h2>
+                    <div class="goals-grid">
+                        <div class="goal-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Sustainable Growth</h3>
+                            <p>Continue expanding our operations while maintaining profitability and market leadership in all sectors.</p>
+                        </div>
+                        <div class="goal-card">
+                            <i class="fas fa-star"></i>
+                            <h3>Excellence in Service</h3>
+                            <p>Maintain the highest standards of customer service across all our business units and touchpoints.</p>
+                        </div>
+                        <div class="goal-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Team Development</h3>
+                            <p>Invest in our employees' growth and create an inclusive, supportive work environment.</p>
+                        </div>
+                        <div class="goal-card">
+                            <i class="fas fa-leaf"></i>
+                            <h3>Sustainability</h3>
+                            <p>Implement environmentally responsible practices and contribute to sustainable business operations.</p>
+                        </div>
+                        <div class="goal-card">
+                            <i class="fas fa-handshake"></i>
+                            <h3>Partnerships</h3>
+                            <p>Build and strengthen strategic partnerships that create mutual value and opportunities.</p>
+                        </div>
+                        <div class="goal-card">
+                            <i class="fas fa-building"></i>
+                            <h3>Community Impact</h3>
+                            <p>Make meaningful contributions to the communities where we operate through various initiatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

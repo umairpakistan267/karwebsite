@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Story page header – aligned with existing K.A.R theme */
+        .page-hero {
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
+        }
+
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 3.5rem;
+            align-items: center;
+            animation: fadeInUp 0.9s ease both;
+        }
+
+        .page-hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            color: var(--heading-color);
+        }
+
+        .page-hero-title span {
+            display: block;
+        }
+
+        .page-hero-title-main {
+            letter-spacing: 0.03em;
+        }
+
+        .page-hero-subtitle {
+            max-width: 30rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: var(--text-light);
+        }
+
+        .page-hero-media {
+            position: relative;
+            justify-self: center;
+            width: min(420px, 100%);
+            height: 320px;
+            animation: floatHeaderImages 8s ease-in-out infinite;
+        }
+
+        /* Collage mockup inspired by highlighted area */
+        .page-hero-mockup-base {
+            position: absolute;
+            inset: 0;
+            border-radius: 2rem;
+            background: radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                        linear-gradient(135deg, #ffffff 0%, #f3f4f6 40%, #d4d4d4 100%);
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
+            transform: rotate(-8deg);
+            overflow: hidden;
+        }
+
+        .page-hero-mockup-screen {
+            position: absolute;
+            inset: 16px 18px 70px;
+            border-radius: 1.5rem;
+            background-image: url('images/slider/one.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid #ffffff;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+        }
+
+        .page-hero-mockup-header {
+            display: none; /* hide header text bar */
+        }
+
+        .page-hero-mockup-header span {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        .page-hero-mockup-pills {
+            display: inline-flex;
+            gap: 0.35rem;
+        }
+
+        .page-hero-mockup-pill {
+            padding: 0.18rem 0.55rem;
+            border-radius: 999px;
+            background: #e5e7eb;
+            font-size: 0.7rem;
+            color: #374151;
+        }
+
+        .page-hero-mockup-card {
+            display: none; /* hide bottom button box */
+        }
+
+        .page-hero-mockup-icon {
+            position: absolute;
+            left: 18px;
+            bottom: -8px;
+            width: 70px;
+            height: 70px;
+            border-radius: 1.2rem;
+            background: #ffffff;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        @keyframes floatHeaderImages {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .page-hero {
+                padding: 5rem 0 4rem;
+            }
+
+            .page-hero-inner {
+                grid-template-columns: minmax(0, 1fr);
+                text-align: left;
+            }
+
+            .page-hero-title {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-hero-title {
+                font-size: 2.2rem;
+            }
+
+            .page-hero-card {
+                padding: 1.2rem 1.4rem;
+            }
+        }
+        .content-section {
+            padding: 5rem 0;
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-animate.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .timeline-item.animated {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .timeline-item:nth-child(even) {
+            transform: translateX(30px);
+        }
+        .timeline-item:nth-child(even).animated {
+            transform: translateX(0);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 190px;
+            top: 0;
+            bottom: -4rem;
+            width: 3px;
+            background: var(--gradient-primary);
+            animation: lineGrow 1s ease forwards;
+            transform-origin: top;
+            transform: scaleY(0);
+        }
+        .timeline-item.animated::before {
+            animation: lineGrow 1s ease forwards;
+        }
+        @keyframes lineGrow {
+            to { transform: scaleY(1); }
+        }
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: right;
+            padding-right: 2rem;
+            position: relative;
+        }
+        .timeline-year::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 4px var(--primary-color);
+            opacity: 0;
+            animation: dotAppear 0.5s ease forwards;
+        }
+        .timeline-item.animated .timeline-year::after {
+            animation: dotAppear 0.5s ease 0.5s forwards;
+        }
+        @keyframes dotAppear {
+            to { opacity: 1; transform: translateY(-50%) scale(1); }
+            from { opacity: 0; transform: translateY(-50%) scale(0); }
+        }
+        .timeline-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        .timeline-content:hover::before {
+            left: 100%;
+        }
+        .timeline-content:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-xl);
+        }
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .value-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+        }
+        .value-item.animated {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: valueCardPop 0.6s ease forwards;
+        }
+        @keyframes valueCardPop {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .value-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.4s ease;
+        }
+        .value-item:hover .value-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link active">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="index.html#management">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#group" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="page-hero-text">
+                    <h1 class="page-hero-title">
+                        <span class="page-hero-title-main">Our Story</span>
+                        <span>Building excellence across Western Canada</span>
+                    </h1>
+                    <p class="page-hero-subtitle">
+                        Discover how K.A.R Holdings grew from a single fuel station into a diversified group,
+                        building lasting partnerships and experiences across Western Canada.
+                    </p>
+                </div>
+
+                <div class="page-hero-media" aria-hidden="true">
+                    <div class="page-hero-mockup-base">
+                        <div class="page-hero-mockup-screen"></div>
+                        <div class="page-hero-mockup-header">
+                            <span>Header settings</span>
+                            <div class="page-hero-mockup-pills">
+                                <span class="page-hero-mockup-pill">Story</span>
+                                <span class="page-hero-mockup-pill">Front page</span>
+                            </div>
+                        </div>
+                        <div class="page-hero-mockup-card">
+                            Edit story header
+                        </div>
+                        <div class="page-hero-mockup-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="scroll-animate" style="margin-bottom: 4rem;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--heading-color);">The Beginning</h2>
+                    <p style="font-size: 1.125rem; line-height: 1.9; color: var(--text-light); margin-bottom: 1.5rem;">
+                        K.A.R Holdings was founded with a vision to transform the business landscape in Western Canada. 
+                        What started as a small venture in fuel retailing has grown into a diversified business group 
+                        spanning multiple industries.
+                    </p>
+                    <p style="font-size: 1.125rem; line-height: 1.9; color: var(--text-light);">
+                        Our founders, the Aziz brothers, recognized the need for quality service and innovation in the 
+                        Canadian market. With determination, integrity, and a commitment to excellence, they built a 
+                        business that serves communities across Western Canada.
+                    </p>
+                </div>
+
+                <div class="scroll-animate" style="margin-bottom: 4rem;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: var(--heading-color); text-align: center;">Our Journey</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2013</div>
+                            <div class="timeline-content">
+                                <h3>Foundation</h3>
+                                <p>K.A.R Holdings was established with the opening of our first Petro Canada gas station, marking the beginning of our journey in fuel retailing.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2015</div>
+                            <div class="timeline-content">
+                                <h3>Expansion Begins</h3>
+                                <p>We expanded our fuel retailing operations, opening multiple locations and establishing partnerships with leading fuel brands.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2017</div>
+                            <div class="timeline-content">
+                                <h3>Diversification</h3>
+                                <p>Entered the food business sector, opening our first quick service restaurant and beginning our journey into hospitality.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2019</div>
+                            <div class="timeline-content">
+                                <h3>Growth Phase</h3>
+                                <p>Expanded into property management and investment services, diversifying our portfolio and strengthening our market presence.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2021</div>
+                            <div class="timeline-content">
+                                <h3>Innovation</h3>
+                                <p>Launched consultancy services and enhanced our operations with state-of-the-art facilities including modern car wash services.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-content">
+                                <h3>Recognition & Partnerships</h3>
+                                <p>K.A.R Holdings strengthened its brand with new strategic partnerships and recognition from industry peers for operational excellence and community impact.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2026</div>
+                            <div class="timeline-content">
+                                <h3>Today</h3>
+                                <p>Operating 18+ Petro stations, 13+ Domo stations, and 6+ restaurants across Western Canada, K.A.R Holdings continues to invest in people, technology, and new locations to serve our communities better every day.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-animate" style="background: var(--light-color); padding: 3rem; border-radius: 24px; margin-top: 4rem;">
+                    <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--heading-color);">Our Values</h2>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3 style="margin-bottom: 0.5rem; color: var(--dark-color); font-size: 1.25rem;">Integrity</h3>
+                            <p style="color: var(--text-light);">We conduct business with honesty and transparency in all our dealings.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 style="margin-bottom: 0.5rem; color: var(--dark-color); font-size: 1.25rem;">Excellence</h3>
+                            <p style="color: var(--text-light);">We strive for the highest standards in everything we do.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 style="margin-bottom: 0.5rem; color: var(--dark-color); font-size: 1.25rem;">Community</h3>
+                            <p style="color: var(--text-light);">We are committed to serving and supporting our communities.</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 style="margin-bottom: 0.5rem; color: var(--dark-color); font-size: 1.25rem;">Innovation</h3>
+                            <p style="color: var(--text-light);">We embrace new ideas and technologies to stay ahead.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager - Job Application | K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .job-page {
+            margin-top: 120px;
+            padding: 4rem 0 5rem;
+        }
+        .job-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .job-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .job-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 0.98rem;
+            margin-bottom: 2rem;
+        }
+        .job-meta-inline {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .job-meta-inline span {
+            margin-right: 1.5rem;
+        }
+        .application-card {
+            margin-top: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 2rem;
+            background: #ffffff;
+        }
+        .application-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .job-form-group {
+            margin-bottom: 1rem;
+        }
+        .job-form-group label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.35rem;
+        }
+        .job-form-group input[type="text"],
+        .job-form-group input[type="email"],
+        .job-form-group input[type="tel"],
+        .job-form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            font-size: 0.95rem;
+        }
+        .job-form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .job-form-group input[type="file"] {
+            font-size: 0.9rem;
+        }
+        .job-form-actions {
+            margin-top: 1.5rem;
+        }
+        .job-form-checkbox {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="our-team.html">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="fuel-retailing.html" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="job-page">
+        <div class="job-container">
+            <h1 class="job-title">Manager</h1>
+            <p class="job-description">
+                The Manager is responsible for overall site performance, team leadership, and ensuring that guests
+                receive outstanding service. This is sample text that you can replace with the full official job
+                description later.
+            </p>
+            <div class="job-meta-inline">
+                <span><strong>Job Category:</strong> Management</span>
+                <span><strong>Job Type:</strong> Full Time</span>
+            </div>
+
+            <div class="application-card">
+                <h2>Apply for this position</h2>
+                <form>
+                    <div class="job-form-group">
+                        <label>Full Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="job-form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="job-form-group">
+                        <label>Phone *</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="job-form-group">
+                        <label>Cover Letter *</label>
+                        <textarea required></textarea>
+                    </div>
+                    <div class="job-form-group">
+                        <label>Upload CV/Resume *</label>
+                        <input type="file" required>
+                    </div>
+                    <div class="job-form-checkbox">
+                        <label>
+                            <input type="checkbox" required>
+                            By applying for this job, you agree with the storage and handling of your data by this website.
+                        </label>
+                    </div>
+                    <div class="job-form-actions">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>COPYRIGHT © 2023 K.A.R GROUP. | ALL RIGHTS RESERVED.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

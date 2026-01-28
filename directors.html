@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Of Directors - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Story-style hero with icon animation on the right */
+        .page-hero {
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
+        }
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(220px, 1fr);
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .page-hero-title {
+            font-size: 3.4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: 0.04em;
+            color: var(--heading-color);
+            text-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+        }
+        .page-hero-subtitle {
+            font-size: 1.1rem;
+            max-width: 34rem;
+            opacity: 0.92;
+            color: var(--text-light);
+        }
+        .hero-badge-small {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--orange-accent);
+            margin-bottom: 0.75rem;
+        }
+        .director-hero-icon {
+            justify-self: center;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1)),
+                        linear-gradient(135deg, #9B8D4E, #827743);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: floatThinking 4s ease-in-out infinite;
+        }
+        .director-hero-icon::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 50%;
+            border: 3px dashed rgba(255, 255, 255, 0.7);
+            animation: rotateRing 10s linear infinite;
+        }
+        .director-hero-icon i {
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        .director-hero-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            transform-origin: center;
+            animation: orbitIcon 6s linear infinite;
+            z-index: 1;
+        }
+        .director-hero-orbit i {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: #fef9c3;
+        }
+        @keyframes rotateRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes orbitIcon {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes floatThinking {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .content-section {
+            padding: 5rem 0 6rem;
+            position: relative;
+            background: var(--light-color);
+            overflow: hidden;
+        }
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -180px;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(155, 141, 78, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .content-section::after {
+            content: '';
+            position: absolute;
+            bottom: -140px;
+            left: -120px;
+            width: 320px;
+            height: 320px;
+            border-radius: 40% 60% 60% 40%;
+            background: linear-gradient(135deg, rgba(130, 119, 67, 0.1), transparent);
+            pointer-events: none;
+        }
+        .directors-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .directors-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .directors-header h2 {
+            font-size: 2.5rem;
+            color: var(--heading-color);
+            margin-bottom: 0.75rem;
+        }
+        .directors-header p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.0625rem;
+        }
+        .director-card {
+            background: white;
+            padding: 3.25rem 3rem;
+            border-radius: 28px;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+            gap: 3rem;
+            align-items: flex-start;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .director-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(155, 141, 78, 0.08), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .director-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl), 0 22px 60px rgba(15, 23, 42, 0.25);
+        }
+        .director-card:hover::before {
+            opacity: 1;
+        }
+        .director-image {
+            width: 320px;
+            height: 360px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+        .director-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .director-card--reverse {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 320px);
+        }
+        .director-card--reverse .director-image {
+            order: 2;
+        }
+
+        /* Entry animations for director cards triggered on scroll */
+        @keyframes slideInLeftCard {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRightCard {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        .director-card--from-left,
+        .director-card--from-right {
+            opacity: 0;
+        }
+        .director-card--from-left.animated {
+            animation: slideInLeftCard 0.9s ease forwards;
+        }
+        .director-card--from-right.animated {
+            animation: slideInRightCard 0.9s ease forwards;
+        }
+        .director-meta {
+            margin-bottom: 1.25rem;
+        }
+        .director-content h3 {
+            font-size: 1.75rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        .director-role {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+        .director-bio {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        @media (max-width: 768px) {
+            .director-card {
+                grid-template-columns: minmax(0, 1fr);
+                text-align: left;
+                padding: 2.5rem 2rem;
+            }
+
+            .director-image {
+                margin: 0 auto;
+                width: 260px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link active">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="index.html#management">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#group" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="page-hero-text">
+                    <span class="hero-badge-small">Our leadership</span>
+                    <h1 class="page-hero-title">Board Of Directors</h1>
+                    <p class="page-hero-subtitle">
+                        Visionary founders and leaders who have transformed a single fuel station into a diversified
+                        business group across Western Canada.
+                    </p>
+                </div>
+                <div class="director-hero-icon" aria-hidden="true">
+                    <i class="fas fa-user-tie"></i>
+                    <span class="director-hero-orbit"><i class="fas fa-user"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="directors-wrapper">
+                <div class="directors-header">
+                    <h2>Leadership That Shapes Our Future</h2>
+                    <p>
+                        Our Board of Directors brings together exceptional leaders with diverse expertise and a shared
+                        commitment to driving K.A.R Holdings toward continued success and growth.
+                    </p>
+                </div>
+
+                <div class="director-card director-card--from-left">
+                    <div class="director-image">
+                        <img src="images/bod/Khalid.jpg" alt="Mr. Mohammad Khalid Aziz">
+                    </div>
+                    <div class="director-content">
+                        <div class="director-meta">
+                            <h3>Mr. Mohammad Khalid Aziz</h3>
+                        <p class="director-role">Founder – KAR Group</p>
+                        </div>
+                        <p class="director-bio">
+                            <strong>Mr. Mohammad Khalid Aziz</strong> is a visionary entrepreneur and the esteemed founder
+                            of <strong>KAR Group</strong>. His journey is a testament to his unwavering commitment to
+                            success, innovation, and the pursuit of excellence in the business world.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Early Life and Education:</strong> Mr. Khalid Aziz’s remarkable journey began with a
+                            strong educational foundation. He pursued his education in business management from California
+                            State University Los Angeles in the USA, where he honed his entrepreneurial skills and laid the
+                            groundwork for his future endeavours.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Professional Experience before KAR:</strong> Our Founder was always an entrepreneur.
+                            He successfully started and ran two men’s clothing stores and a convenience store in
+                            California, immediately after completing his studies. Not content with this, and to achieve his
+                            ambitious dreams, he left California and came to Canada in 2001 to pursue his vision of
+                            accomplishing something great.
+                        </p>
+                        <p class="director-bio">
+                            <strong>The Birth of KAR Group:</strong> In 2003, armed with a clear vision and an indomitable
+                            spirit, Mr. Khalid Aziz founded KAR Group in Western Canada. At the inception of the company,
+                            he embarked on a journey that would redefine the business landscape in the region.
+                        </p>
+                        <p class="director-bio">
+                            <strong>A Humble Beginning:</strong> KAR Group’s inception was marked by a single fuel station
+                            operating under the <strong>Petro‑Canada</strong> brand at <strong>Okotoks, Alberta</strong>.
+                            With limited resources but boundless determination, Mr. Khalid Aziz set out to build an
+                            enterprise that would stand as a symbol of excellence in the industry.
+                        </p>
+                        <p class="director-bio">
+                            <strong>The Aziz Brothers’ Partnership:</strong> A significant turning point in the company’s
+                            journey came when <strong>Mr. Rashid Aziz</strong>, Mr. Khalid Aziz’s brother, left his job in
+                            California to join him in Edmonton, Canada. This brotherly partnership brought together a
+                            wealth of talent, expertise, and a shared commitment to building something exceptional.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Unwavering Dedication and Growth:</strong> Both brothers worked tirelessly, applying
+                            their combined expertise and dedication to the company’s growth. With a focus on operational
+                            excellence, customer satisfaction, and industry best practices, they propelled
+                            <strong>KAR Group</strong> to new heights of success. Today the network spans a vast
+                            geographical area from White Horse, Yukon in the north to Virden, Manitoba in the east and
+                            Prince Rupert, BC in the west, while having operational headquarters centralized in Edmonton,
+                            Alberta.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Diversification and Expansion:</strong> Under the visionary leadership of
+                            <strong>Mr. Khalid Aziz</strong>, KAR Group diversified significantly. The company’s portfolio
+                            now includes retail management under renowned brands such as <strong>Petro‑Canada</strong> and
+                            <strong>Domo Gasoline</strong>, operation of quick‑service restaurants as a proud
+                            <strong>Pizza Pizza</strong> franchisee, development of gas stations, consultation to third‑party
+                            convenience stores, and its own convenience brand <strong>KIKIT</strong>.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Industry Recognition and Culture:</strong> KAR Group’s exceptional contributions have
+                            been recognised with prestigious awards, including the President’s Award and Associate of the
+                            Year Award from Suncor. Mr. Khalid Aziz has cultivated a family‑like corporate culture where
+                            every team member is valued, and the company’s success is celebrated collectively.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Summary:</strong> Mr. Mohammad Khalid Aziz’s entrepreneurial journey, marked by
+                            determination, innovation, and a relentless pursuit of excellence, has shaped the success of
+                            KAR Group and left an indelible mark on the business landscape of Western Canada.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="director-card director-card--reverse director-card--from-right">
+                    <div class="director-image">
+                        <img src="images/bod/rashid.png" alt="Mr. Mohammad Rashid Aziz">
+                    </div>
+                    <div class="director-content">
+                        <div class="director-meta">
+                            <h3>Mr. Mohammad Rashid Aziz</h3>
+                        <p class="director-role">President – KAR Group</p>
+                        </div>
+                        <p class="director-bio">
+                            <strong>Mr. Rashid Aziz</strong>, co‑owner of KAR Group, embodies an unwavering commitment to
+                            investing in and believing in people, which has helped him build long‑lasting relationships.
+                            The cornerstone of his philosophy is creating an environment built on trust and collaboration.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Early Life and Education:</strong> Mr. Aziz started working at a young age, taking on
+                            various jobs such as delivering newspapers and working as a door greeter for a department
+                            store. These roles helped him support himself throughout his undergraduate studies. He
+                            graduated in 1996 with a <strong>Bachelor’s degree in Manufacturing Systems Engineering</strong>
+                            from California State University, Northridge.
+                        </p>
+                        <p class="director-bio">
+                            Shortly after graduating, he began his professional career as an
+                            <strong>Application Engineer</strong> at an electrolytic grounding company in Torrance,
+                            California. During this time he found a mentor whose journey greatly inspired him and
+                            reinforced his belief that anyone, regardless of background, can achieve their goals through
+                            dedication and hard work.
+                        </p>
+                        <p class="director-bio">
+                            <strong>Joining KAR Group:</strong> In 2007 Mr. Aziz joined his brother Mohammad Khalid Aziz,
+                            founder of KAR Group, as a partner in Edmonton, Canada. Together, they devoted themselves
+                            entirely to the company’s success, setting ambitious goals and ensuring they were achieved
+                            through a shared vision and determination.
+                        </p>
+                        <p class="director-bio">
+                            Under their leadership, KAR Group has grown to become one of the largest independent dealers
+                            in the retail gas station sector in Western Canada. The company’s achievements have been
+                            recognised within the <strong>Suncor</strong> network through numerous nominations and awards,
+                            highlighting their impactful contributions and excellence.
+                        </p>
+                        <p class="director-bio">
+                            For Mr. Aziz, life is not just about personal success but also about recognising and honouring
+                            those who have provided support along the journey. He believes deeply in gratitude toward
+                            mentors and is committed to paying it forward by mentoring and guiding the next generation,
+                            completing the circle of life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>COPYRIGHT © 2023 K.A.R GROUP. | ALL RIGHTS RESERVED.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Trigger slide-in animations for director cards on scroll
+        document.addEventListener('DOMContentLoaded', function () {
+            const animatedCards = document.querySelectorAll('.director-card--from-left, .director-card--from-right');
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedCards.forEach(card => observer.observe(card));
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
+

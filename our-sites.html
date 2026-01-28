@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Sites - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, #ffd700 0%, #ffa500 50%, #ff8c00 100%);
+            padding: 8rem 0 5rem;
+            color: white;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .content-section {
+            padding: 5rem 0;
+        }
+        .site-section {
+            margin-bottom: 5rem;
+        }
+        .site-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--heading-color);
+            text-align: center;
+        }
+        .site-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .site-item {
+            aspect-ratio: 4/3;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .site-item.animated {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .site-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+        .site-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .site-item:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="images/logo.jpg" alt="K.A.R Holdings Logo" style="height: 50px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="index.html#management">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="fuel-retailing.html" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link active">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Sites</h1>
+            <p style="font-size: 1.25rem; opacity: 0.9;">Exploring our locations across Western Canada</p>
+        </div>
+    </section>
+    <section class="content-section">
+        <div class="container">
+            <div class="site-section">
+                <h2 class="site-title">NORTH 170</h2>
+                <div class="site-gallery">
+                    <div class="site-item">
+                        <img src="images/sites/site-1.jpg" alt="NORTH 170" style="width: 100%; height: auto; object-fit: cover; border-radius: 16px;">
+                    </div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">PENHOLD</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">ARDROSSAN</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">ATHABASCA</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">VIKING</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">CAMROSE</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">SYLVAN LAKE</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">ST. PAUL</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">KESWICK</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">WHITE HORSE</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">BLACKFALDS</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">LACOMBE</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">LLOYDMINSTER</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">STETTLER</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">SPRUCE GROVE</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+            <div class="site-section">
+                <h2 class="site-title">RIMBEY</h2>
+                <div class="site-gallery">
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                    <div class="site-item"><i class="fas fa-building"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><h3>K.A.R Holdings</h3><p>Building excellence across Western Canada</p></div>
+                <div class="footer-section"><h4>Company</h4><ul><li><a href="partners.html">Our Partners</a></li><li><a href="careers.html">Careers</a></li></ul></div>
+                <div class="footer-section"><h4>About</h4><ul><li><a href="story.html">Our Story</a></li><li><a href="vision.html">Our Vision</a></li><li><a href="vision.html">Our Mission</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+                <div class="footer-section"><h4>Follow Us</h4><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+            </div>
+            <div class="footer-bottom"><p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const siteItems = document.querySelectorAll('.site-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animated');
+                        }, index * 30);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            siteItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
+

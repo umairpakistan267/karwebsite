@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Retailing - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Story-style hero with animated fuel icon */
+        .page-hero {
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
+        }
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.9fr);
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .hero-badge-small {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--orange-accent);
+            margin-bottom: 0.75rem;
+        }
+        .page-hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: 0.04em;
+            color: var(--heading-color);
+            text-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+        }
+        .page-hero-subtitle {
+            font-size: 1.1rem;
+            max-width: 34rem;
+            opacity: 0.92;
+            color: var(--text-light);
+        }
+        .fuel-hero-icon {
+            justify-self: center;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.08)),
+                        linear-gradient(135deg, #9B8D4E, #827743);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: floatFuelIcon 4s ease-in-out infinite;
+        }
+        .fuel-hero-icon::before {
+            content: "";
+            position: absolute;
+            inset: 22px;
+            border-radius: 50%;
+            border: 3px dashed rgba(255, 255, 255, 0.7);
+            animation: rotateFuelRing 8s linear infinite;
+        }
+        .fuel-hero-icon i {
+            font-size: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes floatFuelIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes rotateFuelRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .content-section {
+            padding: 5rem 0 4rem;
+        }
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-color);
+            border-radius: 16px;
+        }
+        .stat-box .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Fuel intro text */
+        .fuel-intro {
+            position: relative;
+            padding: 3.5rem 4rem 3.5rem;
+            max-width: 1200px;
+            margin: 0 auto 3.5rem;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(68, 60, 33, 0.96), rgba(201, 175, 80, 0.98));
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 235, 170, 0.4);
+            overflow: hidden;
+            text-align: left;
+            transform-origin: center;
+            animation: fuelIntroFloat 8s ease-in-out infinite;
+        }
+        .fuel-intro::before {
+            content: "";
+            position: absolute;
+            inset: 55% -40%;
+            background: linear-gradient(145deg, rgba(255, 222, 158, 0.25), rgba(255, 198, 120, 0.05));
+            opacity: 0.85;
+        }
+        .fuel-intro::after {
+            content: "";
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 249, 214, 0.45), transparent 60%);
+            mix-blend-mode: screen;
+            opacity: 0.85;
+        }
+        .fuel-intro p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem !important;
+            color: #ffffff !important;
+            line-height: 1.85 !important;
+        }
+        .fuel-intro h2 {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 1.5rem;
+            margin-top: 0.5rem;
+            padding-left: 120px;
+            color: #ffffff;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+        .fuel-intro-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 96px;
+            height: 96px;
+            border-bottom-right-radius: 28px;
+            background: linear-gradient(150deg, #c13f2d, #e16b3a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .fuel-intro-badge i {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+        .fuel-intro-dot {
+            position: absolute;
+            top: 34px;
+            left: 118px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #e16b3a;
+            z-index: 1;
+        }
+        @keyframes fuelIntroFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-8px) scale(1.01);
+            }
+        }
+        .fuel-intro p:first-child {
+            font-size: 1.15rem !important;
+            font-weight: 500;
+        }
+        .fuel-intro strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+        @keyframes fuelIntroShine {}
+
+        /* Fuel slider uses same layout as partners slider (global styles),
+           but make fuel images larger on this page */
+        .content-section .partners-slider .partner-logo {
+            flex: 0 0 420px;
+            padding: 0;
+            border-radius: 0;
+            overflow: visible;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content-section .partners-slider .partner-logo:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+        .content-section .partners-slider .partner-logo img {
+            width: 100%;
+            height: auto;
+            max-height: 1000px;
+            object-fit: contain;
+            display: block;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+        .content-section .partners-slider .partner-logo h4 {
+            display: none;
+        }
+
+        /* Key Points Section */
+        .fuel-keypoints {
+            margin-top: 5rem;
+            padding: 0;
+        }
+        .fuel-keypoints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .fuel-keypoint-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 248, 240, 0.98));
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(155, 141, 78, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .fuel-keypoint-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--orange-accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .fuel-keypoint-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary-color);
+        }
+        .fuel-keypoint-card:hover::before {
+            transform: scaleX(1);
+        }
+        .fuel-keypoint-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--orange-accent));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(155, 141, 78, 0.25);
+            transition: transform 0.3s ease;
+        }
+        .fuel-keypoint-card:hover .fuel-keypoint-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .fuel-keypoint-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin: 0 0 1rem;
+            letter-spacing: 0.02em;
+        }
+        .fuel-keypoint-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="images/logo.jpg" alt="K.A.R Holdings Logo" style="height: 50px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="our-team.html">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="fuel-retailing.html" class="nav-link active">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="page-hero-text">
+                    <span class="hero-badge-small">Our group</span>
+                    <h1 class="page-hero-title">Fuel Retailing</h1>
+                    <p class="page-hero-subtitle">
+                        Representing leading brands like Petro‑Canada, Esso, Domo, and KIKIT, KAR Group delivers a 
+                        complete, customer‑focused fuel experience across Western Canada.
+                    </p>
+                </div>
+                <div class="fuel-hero-icon" aria-hidden="true">
+                    <i class="fas fa-gas-pump"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div style="max-width: 3000px; margin: 0 auto;">
+                <div class="fuel-intro">
+                    <div class="fuel-intro-badge">
+                        <i class="fas fa-gas-pump"></i>
+                    </div>
+                    <div class="fuel-intro-dot"></div>
+                    <h2>Retail Fuel Excellence</h2>
+                    <p style="font-size: 1.125rem; line-height: 1.9;">
+                        <strong>KAR Group</strong> has established a strong presence in the fuel retailing sector,
+                        representing several renowned brands, including <strong>Petro‑Canada, Esso, Domo Gasoline,</strong>
+                        and <strong>KIKIT</strong>. This strategic diversification of fuel brands provides customers with
+                        a range of options to suit their preferences and needs.
+                    </p>
+                    <p style="font-size: 1.125rem; line-height: 1.9; margin-top: 1.5rem;">
+                        At KAR Group’s fuel stations, the emphasis goes beyond merely providing fuel. The company is
+                        committed to offering a comprehensive and customer‑centric experience, with clean and
+                        well‑maintained facilities, efficient and friendly service, and a focus on environmental
+                        sustainability.
+                    </p>
+                    <p style="font-size: 1.125rem; line-height: 1.9; margin-top: 1.5rem;">
+                        Many locations incorporate modern features such as car wash services, convenience stores, and
+                        electric vehicle charging stations, catering to a wide spectrum of customer requirements. KAR
+                        Group also actively explores and implements eco‑friendly initiatives, including biofuels and
+                        energy‑efficient technologies, helping reduce its carbon footprint and support a more
+                        sustainable future.
+                    </p>
+                </div>
+
+                <div class="partners-slider">
+                    <div class="partners-track">
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/domo-300x300.png" alt="Domo Station">
+                            <h4>Domo</h4>
+                        </div>
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/domo2-300x287.png" alt="Domo Station 2">
+                            <h4>Domo</h4>
+                        </div>
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/IMG-20170909-WA0004-300x225.jpg" alt="KAR Fuel Site">
+                            <h4>KAR Fuel Site</h4>
+                        </div>
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/IMG-20170909-WA0005-300x225.jpg" alt="KAR Fuel Site">
+                            <h4>KAR Fuel Site</h4>
+                        </div>
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/IMG-20170909-WA0006-300x225.jpg" alt="KAR Fuel Site">
+                            <h4>KAR Fuel Site</h4>
+                        </div>
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/SuncorePetrocanRedDeer005-300x200.jpg" alt="Petro‑Canada Site">
+                            <h4>Petro‑Canada</h4>
+                        </div>
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/SuncorePetrocanRedDeer013-200x300.jpg" alt="Petro‑Canada Site 2">
+                            <h4>Petro‑Canada</h4>
+                        </div>
+                        <div class="partner-logo">
+                            <img src="images/fuel Retailing/SuncorePetrocanRedDeer014-300x200.jpg" alt="Petro‑Canada Site 3">
+                            <h4>Petro‑Canada</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Points Section -->
+                <div class="fuel-keypoints">
+                    <div class="fuel-keypoints-grid">
+                        <div class="fuel-keypoint-card">
+                            <div class="fuel-keypoint-icon">
+                                <i class="fas fa-gas-pump"></i>
+                            </div>
+                            <h3>Premium Fuel Brands</h3>
+                            <p>Representing trusted national brands including Petro‑Canada, Esso, Domo, and KIKIT across Western Canada.</p>
+                        </div>
+                        <div class="fuel-keypoint-card">
+                            <div class="fuel-keypoint-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h3>Convenience Stores</h3>
+                            <p>Modern, well‑stocked convenience stores offering snacks, beverages, and daily essentials at every location.</p>
+                        </div>
+                        <div class="fuel-keypoint-card">
+                            <div class="fuel-keypoint-icon">
+                                <i class="fas fa-car-wash"></i>
+                            </div>
+                            <h3>Car Wash Services</h3>
+                            <p>State‑of‑the‑art car wash facilities to keep your vehicle clean and well‑maintained.</p>
+                        </div>
+                        <div class="fuel-keypoint-card">
+                            <div class="fuel-keypoint-icon">
+                                <i class="fas fa-charging-station"></i>
+                            </div>
+                            <h3>EV Charging</h3>
+                            <p>Electric vehicle charging stations available at select locations, supporting sustainable transportation.</p>
+                        </div>
+                        <div class="fuel-keypoint-card">
+                            <div class="fuel-keypoint-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Eco‑Friendly</h3>
+                            <p>Committed to environmental sustainability through biofuels and energy‑efficient technologies.</p>
+                        </div>
+                        <div class="fuel-keypoint-card">
+                            <div class="fuel-keypoint-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <h3>Customer‑Centric</h3>
+                            <p>Clean facilities, efficient service, and friendly staff dedicated to your satisfaction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- No extra JS needed for fuel slider; it reuses partners slider styling -->
+    <script src="script.js"></script>
+</body>
+</html>
+

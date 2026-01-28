@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convenience Stores - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Story-style hero with animated convenience icon */
+        .page-hero {
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
+        }
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.9fr);
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .hero-badge-small {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--orange-accent);
+            margin-bottom: 0.75rem;
+        }
+        .page-hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: 0.04em;
+            color: var(--heading-color);
+            text-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+        }
+        .page-hero-subtitle {
+            font-size: 1.1rem;
+            max-width: 34rem;
+            opacity: 0.92;
+            color: var(--text-light);
+        }
+        .convenience-hero-icon {
+            justify-self: center;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.08)),
+                        linear-gradient(135deg, #9B8D4E, #827743);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: floatConvenienceIcon 4s ease-in-out infinite;
+        }
+        .convenience-hero-icon::before {
+            content: "";
+            position: absolute;
+            inset: 22px;
+            border-radius: 50%;
+            border: 3px dashed rgba(255, 255, 255, 0.7);
+            animation: rotateConvenienceRing 8s linear infinite;
+        }
+        .convenience-hero-icon i {
+            font-size: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes floatConvenienceIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes rotateConvenienceRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .content-section {
+            padding: 5rem 0 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Convenience intro text */
+        .convenience-intro {
+            position: relative;
+            padding: 3.5rem 4rem 3.5rem;
+            max-width: 1200px;
+            margin: 0 auto 3.5rem;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(68, 60, 33, 0.96), rgba(201, 175, 80, 0.98));
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 235, 170, 0.4);
+            overflow: hidden;
+            text-align: left;
+            transform-origin: center;
+            animation: convenienceIntroFloat 8s ease-in-out infinite;
+        }
+        .convenience-intro::before {
+            content: "";
+            position: absolute;
+            inset: 55% -40%;
+            background: linear-gradient(145deg, rgba(255, 222, 158, 0.25), rgba(255, 198, 120, 0.05));
+            opacity: 0.85;
+        }
+        .convenience-intro::after {
+            content: "";
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 249, 214, 0.45), transparent 60%);
+            mix-blend-mode: screen;
+            opacity: 0.85;
+        }
+        .convenience-intro p {
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem !important;
+            color: #ffffff !important;
+            line-height: 1.85 !important;
+        }
+        .convenience-intro h2 {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 1.5rem;
+            margin-top: 0.5rem;
+            padding-left: 120px;
+            color: #ffffff;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+        .convenience-intro-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 96px;
+            height: 96px;
+            border-bottom-right-radius: 28px;
+            background: linear-gradient(150deg, #c13f2d, #e16b3a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .convenience-intro-badge i {
+            font-size: 2rem;
+            color: #ffffff;
+        }
+        .convenience-intro-dot {
+            position: absolute;
+            top: 34px;
+            left: 118px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #e16b3a;
+            z-index: 1;
+        }
+        @keyframes convenienceIntroFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-8px) scale(1.01);
+            }
+        }
+        .convenience-intro p:first-of-type {
+            font-size: 1.15rem !important;
+            font-weight: 500;
+        }
+        .convenience-intro strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        /* Store image - centered and large */
+        .store-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3.5rem;
+            width: 100%;
+        }
+        .store-image-container img {
+            max-width: 60%;
+            width: 60%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* What We Offer Section */
+        .services-section {
+            margin-top: 5rem;
+        }
+        .services-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            letter-spacing: 0.02em;
+        }
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.0625rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="our-team.html">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="fuel-retailing.html" class="nav-link active">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <div class="page-hero-text">
+                    <span class="hero-badge-small">Our group</span>
+                    <h1 class="page-hero-title">Convenience Stores</h1>
+                    <p class="page-hero-subtitle">
+                        Kitkit convenience stores serve as community hubs, offering a diverse range of products and 
+                        welcoming service across Western Canada.
+                    </p>
+                </div>
+                <div class="convenience-hero-icon" aria-hidden="true">
+                    <i class="fas fa-store"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <!-- Store Image -->
+                <div class="store-image-container">
+                    <img src="images/store/KIKIT-Logo-768x768.png" alt="Kitkit Logo">
+                </div>
+
+                <!-- Text Content -->
+                <div class="convenience-intro">
+                    <div class="convenience-intro-badge">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="convenience-intro-dot"></div>
+                    <h2>Kitkit: Your Neighborhood Convenience Store</h2>
+                    <p>
+                        <strong>Kitkit</strong>, the convenience store business in Canada, has established itself as a beloved fixture in the neighbourhoods it serves. With a name that evokes a sense of familiarity and accessibility, Kitkit embodies the essence of convenience shopping. This Canadian gem is more than just a store; it's a community hub where locals gather to grab their morning coffee, stock up on essentials, and connect with friendly, knowledgeable staff.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        Kitkit proudly offers a diverse range of products, including locally sourced goods, ensuring that customers have access to everything they need, from everyday groceries to unique Canadian treats. As a testament to its commitment to the community, Kitkit often sponsors local events and initiatives, cementing its role as a trusted and integral part of the Canadian neighbourhood fabric. Whether you're a regular visitor or a first-time patron, Kitkit welcomes all with open arms, exemplifying the warmth and hospitality that Canada is known for.
+                    </p>
+                </div>
+
+                <!-- What We Offer Section -->
+                <div class="services-section">
+                    <h2 class="services-title">What We Offer</h2>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shopping-basket"></i></div>
+                        <h3>Wide Product Selection</h3>
+                        <p>
+                            From snacks and beverages to automotive supplies and everyday essentials, we stock a comprehensive range of products to meet your needs.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                        <h3>Extended Hours</h3>
+                        <p>
+                        Many of our locations operate with extended hours to serve you when you need us most.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-smile"></i></div>
+                        <h3>Friendly Service</h3>
+                        <p>
+                        Our staff is trained to provide friendly, efficient service to ensure a pleasant shopping experience.
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

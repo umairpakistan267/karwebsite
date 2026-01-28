@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees Foreign Trips - K.A.R Holdings</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, #ffd700 0%, #ffa500 50%, #ff8c00 100%);
+            padding: 8rem 0 5rem;
+            color: white;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .content-section {
+            padding: 5rem 0;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            visibility: visible !important;
+        }
+        .trip-section {
+            margin-bottom: 5rem;
+        }
+        .trip-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--heading-color);
+            text-align: center;
+        }
+        .trip-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .trip-item {
+            aspect-ratio: 1/1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+            position: relative;
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            visibility: visible !important;
+            display: block !important;
+            background: #f0f0f0;
+        }
+        .trip-item.animated {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            visibility: visible !important;
+        }
+        .trip-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+        .trip-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: transform 0.4s ease;
+        }
+        .trip-item:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="images/logo.jpg" alt="K.A.R Holdings Logo" style="height: 50px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="index.html#management">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="fuel-retailing.html" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link active">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Employees Foreign Trips</h1>
+            <p style="font-size: 1.25rem; opacity: 0.9;">Memorable moments from our team's adventures</p>
+        </div>
+    </section>
+    <section class="content-section">
+        <div class="container">
+            <div class="trip-section">
+                <h2 class="trip-title">CANCUN MEXICO</h2>
+                <div class="trip-gallery">
+                    <div class="trip-item"><img src="images/trips/cancun1.jpg" alt="Cancun Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/cancun2.jpg" alt="Cancun Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/cancun3.jpg" alt="Cancun Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/cancun4.jpg" alt="Cancun Mexico"></div>
+                </div>
+            </div>
+            <div class="trip-section">
+                <h2 class="trip-title">PUERTO VALLARTA MEXICO</h2>
+                <div class="trip-gallery">
+                    <div class="trip-item"><img src="images/trips/puerto1.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto2.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto3.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto4.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto5.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto6.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto7.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto8.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto9.jpg" alt="Puerto Vallarta Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/puerto10.jpg" alt="Puerto Vallarta Mexico"></div>
+                </div>
+            </div>
+            <div class="trip-section">
+                <h2 class="trip-title">LOS CABOS MEXICO</h2>
+                <div class="trip-gallery">
+                    <div class="trip-item"><img src="images/trips/loscabos1.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos2.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos3.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos4.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos5.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos6.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos7.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos8.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos9.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos10.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos11.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos12.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos13.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos14.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos15.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos16.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos17.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos18.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos19.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos20.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos21.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos22.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos23.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos24.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos25.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos26.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos27.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos28.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos29.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos30.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos31.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos32.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos33.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos34.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos35.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos36.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos37.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos38.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos39.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos40.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos41.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos42.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos43.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos44.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos45.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos46.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos47.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos48.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos49.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos50.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos51.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos52.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos53.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos54.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos55.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos56.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos57.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos58.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos59.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos60.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos61.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos62.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos63.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos64.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos65.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos66.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos67.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos68.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos69.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos70.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos71.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos72.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos73.jpg" alt="Los Cabos Mexico"></div>
+                    <div class="trip-item"><img src="images/trips/loscabos74.jpg" alt="Los Cabos Mexico"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section"><h3>K.A.R Holdings</h3><p>Building excellence across Western Canada</p></div>
+                <div class="footer-section"><h4>Company</h4><ul><li><a href="partners.html">Our Partners</a></li><li><a href="careers.html">Careers</a></li></ul></div>
+                <div class="footer-section"><h4>About</h4><ul><li><a href="story.html">Our Story</a></li><li><a href="vision.html">Our Vision</a></li><li><a href="vision.html">Our Mission</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+                <div class="footer-section"><h4>Follow Us</h4><div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+            </div>
+            <div class="footer-bottom"><p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+        </div>
+    </footer>
+    <script>
+        // Prevent script.js from interfering with trip items
+        document.addEventListener('DOMContentLoaded', () => {
+            const tripItems = document.querySelectorAll('.trip-item');
+            const contentSection = document.querySelector('.content-section');
+            
+            // Force content section to be visible (script.js tries to hide all sections)
+            if (contentSection) {
+                contentSection.style.setProperty('opacity', '1', 'important');
+                contentSection.style.setProperty('transform', 'translateY(0)', 'important');
+                contentSection.style.setProperty('visibility', 'visible', 'important');
+            }
+            
+            // Force all trip items to be visible immediately
+            tripItems.forEach(item => {
+                item.classList.add('animated');
+                item.style.setProperty('opacity', '1', 'important');
+                item.style.setProperty('transform', 'translateY(0)', 'important');
+                item.style.setProperty('visibility', 'visible', 'important');
+                item.style.setProperty('display', 'block', 'important');
+            });
+            
+            // Override any other scripts that might hide these - run multiple times to ensure
+            const keepVisible = () => {
+                if (contentSection) {
+                    contentSection.style.setProperty('opacity', '1', 'important');
+                    contentSection.style.setProperty('transform', 'translateY(0)', 'important');
+                }
+                tripItems.forEach(item => {
+                    item.style.setProperty('opacity', '1', 'important');
+                    item.style.setProperty('transform', 'translateY(0)', 'important');
+                });
+            };
+            
+            setTimeout(keepVisible, 100);
+            setTimeout(keepVisible, 500);
+            setTimeout(keepVisible, 1000);
+            
+            // Also run after script.js loads
+            window.addEventListener('load', keepVisible);
+        });
+    </script>
+    <script src="script.js"></script>
+    <script>
+        // Override script.js section hiding after it loads
+        setTimeout(() => {
+            const contentSection = document.querySelector('.content-section');
+            if (contentSection) {
+                contentSection.style.setProperty('opacity', '1', 'important');
+                contentSection.style.setProperty('transform', 'translateY(0)', 'important');
+            }
+        }, 200);
+    </script>
+</body>
+</html>
+
