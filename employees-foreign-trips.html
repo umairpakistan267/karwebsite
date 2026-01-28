@@ -102,12 +102,12 @@
         }
         .trip-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
         }
         .trip-item {
-            aspect-ratio: 1/1;
-            border-radius: 20px;
+            aspect-ratio: 4/3;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: var(--shadow-lg);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
@@ -117,6 +117,8 @@
             visibility: visible !important;
             display: block !important;
             background: #f0f0f0;
+            max-width: 220px;
+            margin: 0 auto;
         }
         .trip-item.animated {
             opacity: 1 !important;
@@ -361,8 +363,13 @@
                 tripItems.forEach(item => {
                     const img = item.querySelector('img');
                     if (!img) return;
+
+                    // Use data-fullsrc if provided so you can load a small thumbnail
+                    // in the gallery and a larger image in the lightbox.
+                    const fullSrc = img.getAttribute('data-fullsrc') || img.src;
+
                     img.addEventListener('click', () => {
-                        lightboxImg.src = img.src;
+                        lightboxImg.src = fullSrc;
                         lightboxImg.alt = img.alt || '';
                         lightbox.classList.add('is-visible');
                         document.body.style.overflow = 'hidden';
