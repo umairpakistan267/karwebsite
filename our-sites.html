@@ -8,19 +8,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Story-style hero for sites, like Our Story page */
         .page-hero {
-            background: linear-gradient(135deg, #ffd700 0%, #ffa500 50%, #ff8c00 100%);
-            padding: 8rem 0 5rem;
-            color: white;
-            text-align: center;
-            margin-top: 70px;
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
             position: relative;
             overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
         }
-        .page-hero h1 {
-            font-size: 3.5rem;
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12) 0, transparent 55%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .page-hero-title {
+            font-size: 3.2rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            color: var(--heading-color);
+        }
+        .page-hero-subtitle {
+            max-width: 32rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: var(--text-light);
+        }
+        .sites-hero-image {
+            position: relative;
+            justify-self: center;
+            width: min(420px, 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
+            transform: rotate(-4deg);
+        }
+        .sites-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
         .content-section {
             padding: 5rem 0;
@@ -73,15 +118,35 @@
         .site-item:hover img {
             transform: scale(1.1);
         }
-    </style>
+</style>
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-wrapper">
                 <div class="logo">
                     <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
-                        <img src="images/logo.jpg" alt="K.A.R Holdings Logo" style="height: 50px; margin-right: 10px;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
                         <h2>K.A.R Holdings</h2>
                     </a>
                 </div>
@@ -94,7 +159,7 @@
                             <li><a href="story.html">Our Story</a></li>
                             <li><a href="vision.html">Vision/Mission</a></li>
                             <li><a href="directors.html">Board Of Directors</a></li>
-                            <li><a href="index.html#management">Management Team</a></li>
+                            <li><a href="our-team.html">Management Team</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -132,8 +197,17 @@
     </nav>
     <section class="page-hero">
         <div class="container">
-            <h1>Our Sites</h1>
-            <p style="font-size: 1.25rem; opacity: 0.9;">Exploring our locations across Western Canada</p>
+            <div class="page-hero-inner">
+                <div class="page-hero-text">
+                    <h1 class="page-hero-title">Our Sites</h1>
+                    <p class="page-hero-subtitle">
+                        Exploring our locations across Western Canada.
+                    </p>
+                </div>
+                <div class="sites-hero-image" aria-hidden="true">
+                    <img src="images/sites/site-1.jpg" alt="K.A.R Holdings Site">
+                </div>
+            </div>
         </div>
     </section>
     <section class="content-section">
