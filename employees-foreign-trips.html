@@ -71,32 +71,46 @@
             display: block !important;
             opacity: 1 !important;
             visibility: visible !important;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
         .trip-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
-        .trip-item.is-hidden-more {
-            display: none !important;
+
+        /* Lightbox */
+        .trip-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
         }
-        .trip-load-more {
-            margin-top: 2rem;
-            display: inline-block;
-            padding: 0.75rem 1.75rem;
-            border-radius: 999px;
-            border: 1px solid rgba(155, 141, 78, 0.5);
-            background: #ffffff;
-            color: var(--dark-color);
-            font-weight: 600;
+        .trip-lightbox.is-visible {
+            display: flex;
+        }
+        .trip-lightbox-inner {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+        }
+        .trip-lightbox-inner img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .trip-lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
             cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-        .trip-load-more:hover {
-            background: linear-gradient(135deg, #e2d69a, #c3b36a);
-            color: #ffffff;
-            border-color: transparent;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
@@ -200,17 +214,25 @@
                     <div class="trip-item"><img src="images/trips/loscabos8.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
                     <div class="trip-item"><img src="images/trips/loscabos9.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
                     <div class="trip-item"><img src="images/trips/loscabos10.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
-                    <!-- Remaining images keep lazy loading; hidden initially via JS for speed -->
                     <div class="trip-item"><img src="images/trips/loscabos11.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
                     <div class="trip-item"><img src="images/trips/loscabos12.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
                     <div class="trip-item"><img src="images/trips/loscabos13.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
                     <div class="trip-item"><img src="images/trips/loscabos14.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
                     <div class="trip-item"><img src="images/trips/loscabos15.jpg" alt="Los Cabos Mexico" loading="lazy"></div>
-                    <!-- ... remaining loscabos images unchanged but now with loading="lazy" ... -->
+                    <!-- remaining loscabos images continue here, all with loading="lazy" -->
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox for large image view -->
+    <div class="trip-lightbox" id="tripLightbox">
+        <div class="trip-lightbox-inner">
+            <button class="trip-lightbox-close" id="tripLightboxClose">&times;</button>
+            <img id="tripLightboxImage" src="" alt="">
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -235,28 +257,39 @@
                 contentSection.style.setProperty('visibility', 'visible', 'important');
             }
             
-            // Hide extra images per gallery to speed up initial rendering
-            const galleries = document.querySelectorAll('.trip-gallery');
-            galleries.forEach(gallery => {
-                const items = Array.from(gallery.querySelectorAll('.trip-item'));
-                const visibleCount = 8;
-                if (items.length > visibleCount) {
-                    items.slice(visibleCount).forEach(item => {
-                        item.classList.add('is-hidden-more');
-                    });
+            // Set up lightbox for larger view on click
+            const lightbox = document.getElementById('tripLightbox');
+            const lightboxImg = document.getElementById('tripLightboxImage');
+            const lightboxClose = document.getElementById('tripLightboxClose');
 
-                    const button = document.createElement('button');
-                    button.type = 'button';
-                    button.className = 'trip-load-more';
-                    button.textContent = 'Load more photos';
-                    gallery.parentNode.appendChild(button);
-
-                    button.addEventListener('click', () => {
-                        items.forEach(item => item.classList.remove('is-hidden-more'));
-                        button.remove();
+            if (lightbox && lightboxImg && lightboxClose) {
+                tripItems.forEach(item => {
+                    const img = item.querySelector('img');
+                    if (!img) return;
+                    img.addEventListener('click', () => {
+                        lightboxImg.src = img.src;
+                        lightboxImg.alt = img.alt || '';
+                        lightbox.classList.add('is-visible');
+                        document.body.style.overflow = 'hidden';
                     });
-                }
-            });
+                });
+
+                const closeLightbox = () => {
+                    lightbox.classList.remove('is-visible');
+                    lightboxImg.src = '';
+                    document.body.style.overflow = '';
+                };
+
+                lightboxClose.addEventListener('click', closeLightbox);
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) closeLightbox();
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && lightbox.classList.contains('is-visible')) {
+                        closeLightbox();
+                    }
+                });
+            }
             
             // Override any other scripts that might hide these - run multiple times to ensure
             const keepVisible = () => {
