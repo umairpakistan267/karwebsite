@@ -36,7 +36,39 @@
             z-index: 1;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+        .page-hero-icon {
+            width: 140px;
+            height: 140px;
+            border-radius: 32px;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.9), rgba(255,255,255,0.08)),
+                        linear-gradient(135deg, #9B8D4E, #827743);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 22px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero-icon::before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 24px;
+            border: 3px dashed rgba(255, 255, 255, 0.7);
+            animation: rotateAwardRing 8s linear infinite;
+        }
+        @keyframes rotateAwardRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .page-hero-icon i {
+            font-size: 3rem;
+            position: relative;
+            z-index: 1;
         }
         .page-hero-title {
             font-size: 3.2rem;
@@ -51,15 +83,339 @@
             opacity: 0.9;
             color: var(--text-light);
         }
-        .content-section { padding: 5rem 0; }
-        .gallery-category { margin-bottom: 4rem; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .gallery-item { aspect-ratio: 1/1; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); position: relative; opacity: 0; transform: translateY(30px); }
-        .gallery-item.animated { opacity: 1; transform: translateY(0); animation: fadeInUp 0.6s ease forwards; }
-        .gallery-item:hover { transform: translateY(-10px) scale(1.02); box-shadow: var(--shadow-xl); }
-        .gallery-item img { transition: transform 0.4s ease; }
-        .gallery-item:hover img { transform: scale(1.1); }
-        .category-title { font-size: 2.5rem; margin-bottom: 2rem; color: var(--heading-color); }
+        .content-section { 
+            padding: 5rem 0; 
+            background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
+        }
+        
+        /* Year Section */
+        .year-section {
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .year-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Year Header */
+        .year-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .year-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, #9B8D4E 0%, #827743 100%);
+            color: white;
+            font-size: 4rem;
+            font-weight: 800;
+            padding: 1.5rem 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(155, 141, 78, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.1em;
+        }
+        .year-badge-icon {
+            font-size: 2.5rem;
+            color: #ffd700;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+            animation: awardPulse 2s ease-in-out infinite;
+        }
+        @keyframes awardPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .year-badge::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* Slider Container */
+        .slider-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+        .slider-wrapper {
+            overflow: hidden;
+            border-radius: 24px;
+            position: relative;
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 2rem;
+        }
+        .slider-item {
+            flex: 0 0 calc(33.333% - 1.33rem);
+            min-width: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: white;
+        }
+        .slider-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2);
+        }
+        .slider-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+        .slider-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: lightboxFadeIn 0.3s ease;
+        }
+        @keyframes lightboxFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: rotate(90deg);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-nav.prev {
+            left: -70px;
+        }
+        .lightbox-nav.next {
+            right: -70px;
+        }
+        .lightbox-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .lightbox-nav:disabled:hover {
+            transform: translateY(-50%);
+        }
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+            }
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .lightbox-nav.prev {
+                left: 10px;
+            }
+            .lightbox-nav.next {
+                right: 10px;
+            }
+        }
+        
+        /* Navigation Arrows */
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 10;
+            color: #9B8D4E;
+            font-size: 1.2rem;
+        }
+        .slider-nav:hover {
+            background: #9B8D4E;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 30px rgba(155, 141, 78, 0.4);
+        }
+        .slider-nav.prev {
+            left: 0;
+        }
+        .slider-nav.next {
+            right: 0;
+        }
+        .slider-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .slider-nav:disabled:hover {
+            transform: translateY(-50%);
+            background: white;
+            color: #9B8D4E;
+        }
+        
+        /* Dots Indicator */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        .slider-dot.active {
+            background: #9B8D4E;
+            width: 32px;
+            border-radius: 6px;
+        }
+        .slider-dot:hover {
+            background: #9B8D4E;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .slider-item {
+                flex: 0 0 calc(50% - 1rem);
+            }
+            .slider-container {
+                padding: 0 50px;
+            }
+            .year-badge {
+                font-size: 3rem;
+                padding: 1.2rem 3rem;
+            }
+            .year-badge-icon {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .slider-item {
+                flex: 0 0 100%;
+            }
+            .slider-container {
+                padding: 0 50px;
+            }
+            .year-badge {
+                font-size: 2.5rem;
+                padding: 1rem 2rem;
+            }
+            .year-badge-icon {
+                font-size: 1.5rem;
+            }
+            .slider-nav {
+                width: 40px;
+                height: 40px;
+            }
+        }
 </style>
 </head>
 <body>
@@ -146,36 +502,181 @@
                         Moments from our journey, celebrating the people and places that make K.A.R Holdings special.
                     </p>
                 </div>
+                <div class="page-hero-icon" aria-hidden="true">
+                    <i class="fas fa-trophy"></i>
+                </div>
             </div>
         </div>
     </section>
     <section class="content-section">
         <div class="container">
-            <div class="gallery-category">
-                <h2 class="category-title">Gallery</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item" style="position: relative;">
-                        <img src="images/gallery1.jpg" alt="K.A.R Holdings Project" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 2rem 1.5rem 1.5rem; border-radius: 0 0 20px 20px;">
-                            <p style="color: white; font-size: 1.125rem; font-weight: 600; margin: 0;">Project Showcase</p>
+            <!-- 2020 Section -->
+            <div class="year-section" data-year="2020">
+                <div class="year-header">
+                    <div class="year-badge">
+                        <i class="fas fa-award year-badge-icon"></i>
+                        <span>2020</span>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <button class="slider-nav prev" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="slider-wrapper">
+                        <div class="slider-track">
+                            <div class="slider-item">
+                                <img src="images/stars/2020/Lexi-Gilbert.png" alt="Lexi Gilbert - 2020" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2020/Myranda.png" alt="Myranda - 2020" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2020/NAsir-Khan.png" alt="Nasir Khan - 2020" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2020/Nelia.png" alt="Nelia - 2020" loading="lazy">
+                            </div>
                         </div>
                     </div>
-                    <div class="gallery-item" style="position: relative;">
-                        <img src="images/gallery2.jpg" alt="K.A.R Holdings Project" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 2rem 1.5rem 1.5rem; border-radius: 0 0 20px 20px;">
-                            <p style="color: white; font-size: 1.125rem; font-weight: 600; margin: 0;">Project Showcase</p>
+                    <button class="slider-nav next" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="slider-dots"></div>
+                </div>
+            </div>
+
+            <!-- 2019 Section -->
+            <div class="year-section" data-year="2019">
+                <div class="year-header">
+                    <div class="year-badge">
+                        <i class="fas fa-award year-badge-icon"></i>
+                        <span>2019</span>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <button class="slider-nav prev" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="slider-wrapper">
+                        <div class="slider-track">
+                            <div class="slider-item">
+                                <img src="images/stars/2019/Ahtasham.png" alt="Ahtasham - 2019" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2019/Nasir.png" alt="Nasir - 2019" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2019/Rudante.png" alt="Rudante - 2019" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2019/Susan.png" alt="Susan - 2019" loading="lazy">
+                            </div>
                         </div>
                     </div>
-                    <div class="gallery-item" style="position: relative;">
-                        <img src="images/gallery3.jpg" alt="K.A.R Holdings Project" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 2rem 1.5rem 1.5rem; border-radius: 0 0 20px 20px;">
-                            <p style="color: white; font-size: 1.125rem; font-weight: 600; margin: 0;">Project Showcase</p>
+                    <button class="slider-nav next" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="slider-dots"></div>
+                </div>
+            </div>
+
+            <!-- 2018 Section -->
+            <div class="year-section" data-year="2018">
+                <div class="year-header">
+                    <div class="year-badge">
+                        <i class="fas fa-award year-badge-icon"></i>
+                        <span>2018</span>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <button class="slider-nav prev" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="slider-wrapper">
+                        <div class="slider-track">
+                            <div class="slider-item">
+                                <img src="images/stars/2018/Alicia.png" alt="Alicia - 2018" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2018/Ammar.png" alt="Ammar - 2018" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2018/Carol.png" alt="Carol - 2018" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2018/Sumit.png" alt="Sumit - 2018" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2018/Sunaina-1.png" alt="Sunaina - 2018" loading="lazy">
+                            </div>
                         </div>
                     </div>
+                    <button class="slider-nav next" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="slider-dots"></div>
+                        </div>
+                    </div>
+
+            <!-- 2017 Section -->
+            <div class="year-section" data-year="2017">
+                <div class="year-header">
+                    <div class="year-badge">
+                        <i class="fas fa-award year-badge-icon"></i>
+                        <span>2017</span>
+                        </div>
+                    </div>
+                <div class="slider-container">
+                    <button class="slider-nav prev" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="slider-wrapper">
+                        <div class="slider-track">
+                            <div class="slider-item">
+                                <img src="images/stars/2017/Amrik-Singh.png" alt="Amrik Singh - 2017" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2017/Ganie.png" alt="Ganie - 2017" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2017/Jean.png" alt="Jean - 2017" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2017/Kalpana.png" alt="Kalpana - 2017" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2017/Sakshi.png" alt="Sakshi - 2017" loading="lazy">
+                            </div>
+                            <div class="slider-item">
+                                <img src="images/stars/2017/Sunaina.png" alt="Sunaina - 2017" loading="lazy">
+                        </div>
+                    </div>
+                    </div>
+                    <button class="slider-nav next" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="slider-dots"></div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox for large image view -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightboxImage" src="" alt="">
+            <button class="lightbox-nav next" id="lightboxNext" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -189,25 +690,223 @@
     </footer>
     <script src="script.js"></script>
     <script>
-        // Gallery scroll animations
         document.addEventListener('DOMContentLoaded', () => {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const galleryObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
+            // Initialize all sliders
+            const yearSections = document.querySelectorAll('.year-section');
+            
+            yearSections.forEach(section => {
+                initSlider(section);
+            });
+            
+            // Intersection Observer for year sections
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animated');
-                        }, index * 100);
-                        galleryObserver.unobserve(entry.target);
+                        entry.target.classList.add('visible');
                     }
                 });
             }, {
                 threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+                rootMargin: '0px 0px -100px 0px'
             });
             
-            galleryItems.forEach(item => {
-                galleryObserver.observe(item);
+            yearSections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+            function initSlider(section) {
+                const track = section.querySelector('.slider-track');
+                const items = section.querySelectorAll('.slider-item');
+                const prevBtn = section.querySelector('.slider-nav.prev');
+                const nextBtn = section.querySelector('.slider-nav.next');
+                const dotsContainer = section.querySelector('.slider-dots');
+                
+                if (!track || items.length === 0) return;
+                
+                let currentIndex = 0;
+                const itemsPerView = getItemsPerView();
+                const totalSlides = Math.ceil(items.length / itemsPerView);
+                
+                // Create dots
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                    dot.addEventListener('click', () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
+                
+                function getItemsPerView() {
+                    if (window.innerWidth <= 768) return 1;
+                    if (window.innerWidth <= 1024) return 2;
+                    return 3;
+                }
+                
+                function updateSlider() {
+                    const itemWidth = items[0].offsetWidth + 32; // 32px is gap
+                    const translateX = -currentIndex * itemWidth * itemsPerView;
+                    track.style.transform = `translateX(${translateX}px)`;
+                    
+                    // Update dots
+                    const dots = dotsContainer.querySelectorAll('.slider-dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                    
+                    // Update nav buttons
+                    prevBtn.disabled = currentIndex === 0;
+                    nextBtn.disabled = currentIndex >= totalSlides - 1;
+                }
+                
+                function goToSlide(index) {
+                    currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+                    updateSlider();
+                }
+                
+                function nextSlide() {
+                    if (currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        updateSlider();
+                    }
+                }
+                
+                function prevSlide() {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateSlider();
+                    }
+                }
+                
+                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', prevSlide);
+                
+                // Touch/swipe support
+                let startX = 0;
+                let isDragging = false;
+                
+                track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                });
+                
+                track.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                });
+                
+                track.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    const endX = e.changedTouches[0].clientX;
+                    const diff = startX - endX;
+                    
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) nextSlide();
+                        else prevSlide();
+                    }
+                });
+                
+                // Keyboard navigation
+                section.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') prevSlide();
+                    if (e.key === 'ArrowRight') nextSlide();
+                });
+                
+                // Handle window resize
+                let resizeTimeout;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        const newItemsPerView = getItemsPerView();
+                        if (newItemsPerView !== itemsPerView) {
+                            currentIndex = 0;
+                            updateSlider();
+                        }
+                    }, 250);
+                });
+                
+                // Initial update
+                updateSlider();
+            }
+            
+            // Lightbox functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            
+            // Collect all images from all sliders
+            const allImages = Array.from(document.querySelectorAll('.slider-item img'));
+            let currentImageIndex = 0;
+            
+            // Open lightbox when image is clicked
+            allImages.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    currentImageIndex = index;
+                    openLightbox();
+                });
+            });
+            
+            function openLightbox() {
+                const currentImg = allImages[currentImageIndex];
+                lightboxImage.src = currentImg.src;
+                lightboxImage.alt = currentImg.alt || '';
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                updateLightboxNav();
+            }
+            
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    lightboxImage.src = '';
+                }, 300);
+            }
+            
+            function showNextImage() {
+                if (currentImageIndex < allImages.length - 1) {
+                    currentImageIndex++;
+                    openLightbox();
+                }
+            }
+            
+            function showPrevImage() {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    openLightbox();
+                }
+            }
+            
+            function updateLightboxNav() {
+                lightboxPrev.disabled = currentImageIndex === 0;
+                lightboxNext.disabled = currentImageIndex === allImages.length - 1;
+            }
+            
+            // Lightbox event listeners
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', showPrevImage);
+            lightboxNext.addEventListener('click', showNextImage);
+            
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrevImage();
+                } else if (e.key === 'ArrowRight') {
+                    showNextImage();
+                }
             });
         });
     </script>

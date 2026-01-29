@@ -69,54 +69,147 @@
         }
         .content-section {
             padding: 5rem 0;
+            background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
         }
+        
+        /* Site Section */
         .site-section {
-            margin-bottom: 5rem;
+            margin-bottom: 6rem;
         }
-        .site-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        .site-section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
             color: var(--heading-color);
             text-align: center;
-        }
-        .site-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .site-item {
-            aspect-ratio: 4/3;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            background: var(--gradient-primary);
+            padding-bottom: 1rem;
+        }
+        .site-section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #9B8D4E, #827743);
+            border-radius: 2px;
+        }
+        
+        /* Individual Site Slider Container */
+        .site-slider-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 60px;
+        }
+        .site-slider-wrapper {
+            overflow: hidden;
+            border-radius: 24px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        .site-slider-track {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .site-item.animated {
-            opacity: 1;
-            transform: translateY(0);
-            animation: fadeInUp 0.6s ease forwards;
+        .site-slide {
+            flex: 0 0 100%;
+            min-width: 0;
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
         }
-        .site-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-xl);
-        }
-        .site-item img {
+        .site-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            display: block;
         }
-        .site-item:hover img {
-            transform: scale(1.1);
+        
+        /* Navigation Arrows */
+        .site-slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 10;
+            color: #9B8D4E;
+            font-size: 1.2rem;
+        }
+        .site-slider-nav:hover {
+            background: #9B8D4E;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 30px rgba(155, 141, 78, 0.4);
+        }
+        .site-slider-nav.prev {
+            left: 0;
+        }
+        .site-slider-nav.next {
+            right: 0;
+        }
+        .site-slider-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .site-slider-nav:disabled:hover {
+            transform: translateY(-50%);
+            background: white;
+            color: #9B8D4E;
+        }
+        
+        /* Navigation Dots */
+        .site-slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .site-slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        .site-slider-dot.active {
+            background: #9B8D4E;
+            width: 32px;
+            border-radius: 6px;
+        }
+        .site-slider-dot:hover {
+            background: #9B8D4E;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .site-slider-container {
+                padding: 0 50px;
+            }
+            .site-section-title {
+                font-size: 2.2rem;
+            }
+            .site-slider-nav {
+                width: 40px;
+                height: 40px;
+            }
         }
 </style>
 </head>
@@ -211,6 +304,12 @@
         </div>
     </section>
     <section class="content-section">
+        <div class="container">
+            <!-- Site sections will be dynamically generated by JavaScript -->
+            <div id="sitesContainer"></div>
+        </div>
+    </section>
+    <section class="content-section" style="display: none;">
         <div class="container">
             <div class="site-section">
                 <h2 class="site-title">NORTH 170</h2>
@@ -420,23 +519,419 @@
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const siteItems = document.querySelectorAll('.site-item');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('animated');
-                        }, index * 30);
-                        observer.unobserve(entry.target);
-                    }
+            // Site data with images from the folders
+            const sitesData = [
+                {
+                    name: 'North 170',
+                    location: 'Edmonton, AB',
+                    images: [
+                        'images/sites/North 170/DJI_0086-scaled.jpg',
+                        'images/sites/North 170/DJI_0088-scaled.jpg',
+                        'images/sites/North 170/DJI_0090-scaled.jpg',
+                        'images/sites/North 170/DJI_0092-scaled.jpg',
+                        'images/sites/North 170/DJI_0094-scaled.jpg',
+                        'images/sites/North 170/DJI_0097-scaled.jpg',
+                        'images/sites/North 170/DJI_0100-scaled.jpg',
+                        'images/sites/North 170/gallery1.jpg'
+                    ]
+                },
+                {
+                    name: 'Penhold',
+                    location: 'Penhold, AB',
+                    images: [
+                        'images/sites/Penhold/1-_MG_3332-scaled.jpg',
+                        'images/sites/Penhold/2-_MG_3333-scaled.jpg',
+                        'images/sites/Penhold/3-_MG_3334-scaled.jpg',
+                        'images/sites/Penhold/4-_MG_3335-scaled.jpg',
+                        'images/sites/Penhold/9-_MG_3342-scaled.jpg',
+                        'images/sites/Penhold/14-_MG_3350-scaled.jpg',
+                        'images/sites/Penhold/16-_MG_3357-scaled.jpg',
+                        'images/sites/Penhold/17-_MG_3358-scaled.jpg',
+                        'images/sites/Penhold/18-_MG_3361-scaled.jpg',
+                        'images/sites/Penhold/19-DJI_20250826124223_0100_D-scaled.jpg',
+                        'images/sites/Penhold/20-DJI_20250826124300_0103_D-scaled.jpg',
+                        'images/sites/Penhold/21-DJI_20250826124455_0107_D-scaled.jpg',
+                        'images/sites/Penhold/22-DJI_20250826124525_0108_D-scaled.jpg',
+                        'images/sites/Penhold/23-DJI_20250826124821_0115_D-scaled.jpg',
+                        'images/sites/Penhold/24-DJI_20250826125013_0121_D-scaled.jpg',
+                        'images/sites/Penhold/25-DJI_20250826135311_0145_D-scaled.jpg'
+                    ]
+                },
+                {
+                    name: 'Ardrossan',
+                    location: 'Ardrossan, AB',
+                    images: [
+                        'images/sites/ARDROSSAN/1-1.jpg',
+                        'images/sites/ARDROSSAN/3-1.jpg',
+                        'images/sites/ARDROSSAN/9-1.jpg',
+                        'images/sites/ARDROSSAN/14-1.jpg',
+                        'images/sites/ARDROSSAN/15-1.jpg',
+                        'images/sites/ARDROSSAN/17-1.jpg'
+                    ]
+                },
+                {
+                    name: 'Athabasca',
+                    location: 'Athabasca, AB',
+                    images: [
+                        'images/sites/ATHABASCA/Screenshot-192.png',
+                        'images/sites/ATHABASCA/Screenshot-193.png',
+                        'images/sites/ATHABASCA/Screenshot-194.png',
+                        'images/sites/ATHABASCA/Screenshot-195.png',
+                        'images/sites/ATHABASCA/Screenshot-196.png',
+                        'images/sites/ATHABASCA/Screenshot-197.png',
+                        'images/sites/ATHABASCA/Screenshot-198.png',
+                        'images/sites/ATHABASCA/Screenshot-199.png',
+                        'images/sites/ATHABASCA/Screenshot-201.png',
+                        'images/sites/ATHABASCA/Screenshot-202.png',
+                        'images/sites/ATHABASCA/Screenshot-203.png',
+                        'images/sites/ATHABASCA/Screenshot-204.png',
+                        'images/sites/ATHABASCA/Screenshot-207.png',
+                        'images/sites/ATHABASCA/Screenshot-208.png'
+                    ]
+                },
+                {
+                    name: 'Viking',
+                    location: 'Viking, AB',
+                    images: [
+                        'images/sites/viking/VIKING.jpg',
+                        'images/sites/viking/2-scaled.jpg',
+                        'images/sites/viking/3-scaled.jpg',
+                        'images/sites/viking/4-scaled.jpg',
+                        'images/sites/viking/5-scaled.jpg',
+                        'images/sites/viking/6-scaled.jpg'
+                    ]
+                },
+                {
+                    name: 'Camrose',
+                    location: 'Camrose, AB',
+                    images: [
+                        'images/sites/camrose/6-_MG_3374-scaled.jpg',
+                        'images/sites/camrose/7-_MG_3375-scaled.jpg',
+                        'images/sites/camrose/8-_MG_3376-scaled.jpg',
+                        'images/sites/camrose/9-_MG_3378-scaled.jpg',
+                        'images/sites/camrose/10-_MG_3379-scaled.jpg',
+                        'images/sites/camrose/11-_MG_3381-scaled.jpg',
+                        'images/sites/camrose/12-DJI_20250826163400_0157_D-scaled.jpg',
+                        'images/sites/camrose/14-DJI_20250826163451_0161_D-scaled.jpg',
+                        'images/sites/camrose/15-DJI_20250826163711_0165_D-scaled.jpg',
+                        'images/sites/camrose/16-DJI_20250826163804_0168_D-scaled.jpg',
+                        'images/sites/camrose/17-EDIT-CAM2-scaled.jpg',
+                        'images/sites/camrose/18-EDIT-CAM-scaled.jpg'
+                    ]
+                },
+                {
+                    name: 'Sylvan Lake',
+                    location: 'Sylvan Lake, AB',
+                    images: [
+                        'images/sites/SYLVAN LAKE​/1-_MG_3315-scaled.jpg',
+                        'images/sites/SYLVAN LAKE​/2-_MG_3320-scaled.jpg',
+                        'images/sites/SYLVAN LAKE​/4-_MG_3324-scaled.jpg',
+                        'images/sites/SYLVAN LAKE​/9-_MG_3330-scaled.jpg',
+                        'images/sites/SYLVAN LAKE​/10-_MG_3331-scaled.jpg',
+                        'images/sites/SYLVAN LAKE​/13-DJI_20250826113104_0089_D-scaled.jpg',
+                        'images/sites/SYLVAN LAKE​/14-DJI_20250826114504_0097_D-scaled.jpg'
+                    ]
+                },
+                {
+                    name: 'St. Paul',
+                    location: 'St. Paul, AB',
+                    images: [
+                        'images/sites/ST. PAUL​/one.png',
+                        'images/sites/ST. PAUL​/two.png',
+                        'images/sites/ST. PAUL​/three.png'
+                    ]
+                },
+                {
+                    name: 'Keswick',
+                    location: 'Keswick, AB',
+                    images: [
+                        'images/sites/Keswick/one.png',
+                        'images/sites/Keswick/two.png',
+                        'images/sites/Keswick/three.png',
+                        'images/sites/Keswick/four.png',
+                        'images/sites/Keswick/five.png',
+                        'images/sites/Keswick/six.png'
+                    ]
+                },
+                {
+                    name: 'Whitehorse',
+                    location: 'Whitehorse, YT',
+                    images: [
+                        'images/sites/White Horse/IMG-20170909-WA0006.jpg',
+                        'images/sites/White Horse/IMG-20170909-WA0007.jpg',
+                        'images/sites/White Horse/IMG-20170909-WA0008.jpg',
+                        'images/sites/White Horse/WhatsApp-Image-2024-08-15-at-22.39.39-3.jpeg',
+                        'images/sites/White Horse/WhatsApp-Image-2024-08-15-at-22.39.40-3.jpeg',
+                        'images/sites/White Horse/WhatsApp-Image-2024-08-16-at-00.06.49.jpeg',
+                        'images/sites/White Horse/WhatsApp-Image-2024-08-16-at-00.06.50.jpeg'
+                    ]
+                },
+                {
+                    name: 'Blackfalds',
+                    location: 'Blackfalds, AB',
+                    images: [
+                        'images/sites/Blackfalds/WhatsApp-Image-2025-08-26-at-7.17.01-PM-1.jpeg',
+                        'images/sites/Blackfalds/WhatsApp-Image-2025-08-26-at-7.18.14-PM.jpeg',
+                        'images/sites/Blackfalds/WhatsApp-Image-2025-08-26-at-7.35.14-PM-1.jpeg'
+                    ]
+                },
+                {
+                    name: 'Lacombe',
+                    location: 'Lacombe, AB',
+                    images: [
+                        'images/sites/Lacombe/IMG_6172-scaled.jpeg',
+                        'images/sites/Lacombe/IMG_6173-scaled.jpeg',
+                        'images/sites/Lacombe/IMG_6174-scaled.jpeg',
+                        'images/sites/Lacombe/IMG_6175-scaled.jpeg'
+                    ]
+                },
+                {
+                    name: 'Lloydminster',
+                    location: 'Lloydminster, AB/SK',
+                    images: [
+                        'images/sites/LLOYDMINSTER/WhatsApp-Image-2025-08-27-at-17.05.32_af88a352.jpg',
+                        'images/sites/LLOYDMINSTER/WhatsApp-Image-2025-08-27-at-17.05.33_307014f4.jpg',
+                        'images/sites/LLOYDMINSTER/WhatsApp-Image-2025-08-27-at-17.05.33_e6163656.jpg',
+                        'images/sites/LLOYDMINSTER/WhatsApp-Image-2025-08-27-at-17.06.02_370a9159.jpg',
+                        'images/sites/LLOYDMINSTER/WhatsApp-Image-2025-08-27-at-17.06.02_851c72c5.jpg'
+                    ]
+                },
+                {
+                    name: 'Stettler',
+                    location: 'Stettler, AB',
+                    images: [
+                        'images/sites/STETTLER/WhatsApp-Image-2025-08-27-at-02.58.43_6d117b36.jpg',
+                        'images/sites/STETTLER/WhatsApp-Image-2025-08-27-at-02.58.51_2d3545ba.jpg',
+                        'images/sites/STETTLER/WhatsApp-Image-2025-08-27-at-02.59.47_11193ecf.jpg',
+                        'images/sites/STETTLER/WhatsApp-Image-2025-08-27-at-02.59.47_e6499904.jpg'
+                    ]
+                },
+                {
+                    name: 'Spruce Grove',
+                    location: 'Spruce Grove, AB',
+                    images: [
+                        'images/sites/Spruce Grove/WhatsApp-Image-2025-08-26-at-5.59.22-PM.jpeg',
+                        'images/sites/Spruce Grove/WhatsApp-Image-2025-08-26-at-6.03.24-PM.jpeg',
+                        'images/sites/Spruce Grove/WhatsApp-Image-2025-08-26-at-6.04.44-PM.jpeg'
+                    ]
+                },
+                {
+                    name: 'Rimbey',
+                    location: 'Rimbey, AB',
+                    images: [
+                        'images/sites/Rimbey/1-_MG_3291-1-scaled.jpg',
+                        'images/sites/Rimbey/4-_MG_3298-1-scaled.jpg',
+                        'images/sites/Rimbey/5-_MG_3299-1-scaled.jpg',
+                        'images/sites/Rimbey/6-_MG_3302-1-scaled.jpg',
+                        'images/sites/Rimbey/10-_MG_3311-1-scaled.jpg',
+                        'images/sites/Rimbey/13-DJI_20250826093320_0051_D-1-scaled.jpg',
+                        'images/sites/Rimbey/14-DJI_20250826093837_0059_D-1-scaled.jpg',
+                        'images/sites/Rimbey/15-DJI_20250826093859_0060_D-1-scaled.jpg',
+                        'images/sites/Rimbey/16-DJI_20250826093923_0062_D-1-scaled.jpg',
+                        'images/sites/Rimbey/17-DJI_20250826094256_0069_D-1-scaled.jpg',
+                        'images/sites/Rimbey/18-DJI_20250826094338_0071_D-1-scaled.jpg',
+                        'images/sites/Rimbey/20-DJI_20250826100823_0085_D-1-scaled.jpg'
+                    ]
+                }
+            ];
+
+            const sitesContainer = document.getElementById('sitesContainer');
+
+            // Create a separate section with slider for each site
+            sitesData.forEach((site, siteIndex) => {
+                // Create site section
+                const siteSection = document.createElement('div');
+                siteSection.className = 'site-section';
+                siteSection.id = `site-${siteIndex}`;
+
+                // Create site title
+                const siteTitle = document.createElement('h2');
+                siteTitle.className = 'site-section-title';
+                siteTitle.textContent = site.name.toUpperCase();
+                siteSection.appendChild(siteTitle);
+
+                // Create slider container
+                const sliderContainer = document.createElement('div');
+                sliderContainer.className = 'site-slider-container';
+
+                // Create slider wrapper
+                const sliderWrapper = document.createElement('div');
+                sliderWrapper.className = 'site-slider-wrapper';
+
+                // Create slider track
+                const sliderTrack = document.createElement('div');
+                sliderTrack.className = 'site-slider-track';
+                sliderTrack.id = `slider-track-${siteIndex}`;
+
+                // Create navigation buttons
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'site-slider-nav prev';
+                prevBtn.setAttribute('aria-label', 'Previous');
+                prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'site-slider-nav next';
+                nextBtn.setAttribute('aria-label', 'Next');
+                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+                // Create slides for this site
+                site.images.forEach((imageSrc, imgIndex) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'site-slide';
+                    // Properly encode the image path to handle spaces and special characters
+                    // Use encodeURI to properly encode the entire path
+                    const encodedSrc = encodeURI(imageSrc);
+                    const img = document.createElement('img');
+                    img.src = encodedSrc;
+                    img.alt = `${site.name} - Image ${imgIndex + 1}`;
+                    img.loading = 'lazy';
+                    img.onerror = function() {
+                        console.error('Failed to load image:', imageSrc);
+                        // Show a placeholder or error message
+                        this.style.display = 'none';
+                    };
+                    slide.appendChild(img);
+                    sliderTrack.appendChild(slide);
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
+
+                sliderWrapper.appendChild(prevBtn);
+                sliderWrapper.appendChild(sliderTrack);
+                sliderWrapper.appendChild(nextBtn);
+                sliderContainer.appendChild(sliderWrapper);
+
+                // Create dots container
+                const dotsContainer = document.createElement('div');
+                dotsContainer.className = 'site-slider-dots';
+                dotsContainer.id = `slider-dots-${siteIndex}`;
+
+                // Create dots
+                site.images.forEach((_, imgIndex) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'site-slider-dot' + (imgIndex === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', `Go to slide ${imgIndex + 1}`);
+                    dotsContainer.appendChild(dot);
+                });
+
+                sliderContainer.appendChild(dotsContainer);
+                siteSection.appendChild(sliderContainer);
+                sitesContainer.appendChild(siteSection);
+
+                // Initialize slider for this site
+                let currentSlide = 0;
+                const slides = sliderTrack.querySelectorAll('.site-slide');
+                const dots = dotsContainer.querySelectorAll('.site-slider-dot');
+                let autoPlayInterval;
+
+                function updateSlider() {
+                    sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSlide);
+                    });
+                    prevBtn.disabled = currentSlide === 0;
+                    nextBtn.disabled = currentSlide === slides.length - 1;
+                }
+
+                function nextSlide() {
+                    if (currentSlide < slides.length - 1) {
+                        currentSlide++;
+                        updateSlider();
+                    }
+                }
+
+                function prevSlide() {
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        updateSlider();
+                    }
+                }
+
+                function goToSlide(index) {
+                    currentSlide = index;
+                    updateSlider();
+                    resetAutoPlay();
+                }
+
+                function startAutoPlay() {
+                    autoPlayInterval = setInterval(() => {
+                        if (currentSlide < slides.length - 1) {
+                            nextSlide();
+                        } else {
+                            currentSlide = 0;
+                            updateSlider();
+                        }
+                    }, 2000);
+                }
+
+                function stopAutoPlay() {
+                    clearInterval(autoPlayInterval);
+                }
+
+                function resetAutoPlay() {
+                    stopAutoPlay();
+                    startAutoPlay();
+                }
+
+                // Event listeners
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    resetAutoPlay();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    resetAutoPlay();
+                });
+
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => goToSlide(index));
+                });
+
+                // Touch/swipe support
+                let startX = 0;
+                let isDragging = false;
+
+                sliderTrack.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    stopAutoPlay();
+                });
+
+                sliderTrack.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                });
+
+                sliderTrack.addEventListener('touchend', (e) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    const endX = e.changedTouches[0].clientX;
+                    const diff = startX - endX;
+
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            nextSlide();
+                        } else {
+                            prevSlide();
+                        }
+                    }
+                    resetAutoPlay();
+                });
+
+                // Pause on hover
+                sliderWrapper.addEventListener('mouseenter', stopAutoPlay);
+                sliderWrapper.addEventListener('mouseleave', startAutoPlay);
+
+                // Initialize
+                updateSlider();
+                startAutoPlay();
             });
-            
-            siteItems.forEach(item => {
-                observer.observe(item);
+
+            // Ensure sections are visible even if global script.js applies scroll animations
+            const allSections = document.querySelectorAll('section');
+            allSections.forEach(section => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+                section.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
             });
         });
     </script>

@@ -147,35 +147,119 @@
         .trip-lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.95);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .trip-lightbox.is-visible {
             display: flex;
+            opacity: 1;
         }
         .trip-lightbox-inner {
+            position: relative;
             max-width: 90vw;
             max-height: 90vh;
-            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .trip-lightbox-inner img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 90vh;
+            object-fit: contain;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            animation: lightboxFadeIn 0.3s ease;
+        }
+        @keyframes lightboxFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         .trip-lightbox-close {
             position: absolute;
-            top: -40px;
+            top: -50px;
             right: 0;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.5rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .trip-lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: rotate(90deg);
+        }
+        .trip-lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .trip-lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .trip-lightbox-nav.prev {
+            left: -70px;
+        }
+        .trip-lightbox-nav.next {
+            right: -70px;
+        }
+        .trip-lightbox-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .trip-lightbox-nav:disabled:hover {
+            transform: translateY(-50%);
+        }
+        @media (max-width: 768px) {
+            .trip-lightbox-close {
+                top: 20px;
+                right: 20px;
+            }
+            .trip-lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .trip-lightbox-nav.prev {
+                left: 10px;
+            }
+            .trip-lightbox-nav.next {
+                right: 10px;
+            }
         }
 </style>
 </head>
@@ -325,8 +409,16 @@
     <!-- Lightbox for large image view -->
     <div class="trip-lightbox" id="tripLightbox">
         <div class="trip-lightbox-inner">
-            <button class="trip-lightbox-close" id="tripLightboxClose">&times;</button>
+            <button class="trip-lightbox-close" id="tripLightboxClose" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="trip-lightbox-nav prev" id="tripLightboxPrev" aria-label="Previous image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
             <img id="tripLightboxImage" src="" alt="">
+            <button class="trip-lightbox-nav next" id="tripLightboxNext" aria-label="Next image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 
@@ -354,41 +446,99 @@
                 contentSection.style.setProperty('visibility', 'visible', 'important');
             }
             
-            // Set up lightbox for larger view on click
+            // Set up lightbox for larger view on click with navigation
             const lightbox = document.getElementById('tripLightbox');
             const lightboxImg = document.getElementById('tripLightboxImage');
             const lightboxClose = document.getElementById('tripLightboxClose');
+            const lightboxPrev = document.getElementById('tripLightboxPrev');
+            const lightboxNext = document.getElementById('tripLightboxNext');
 
             if (lightbox && lightboxImg && lightboxClose) {
-                tripItems.forEach(item => {
+                // Collect all images from all trip items
+                const allImages = Array.from(tripItems).map(item => {
                     const img = item.querySelector('img');
-                    if (!img) return;
+                    if (!img) return null;
+                    return {
+                        element: img,
+                        fullSrc: img.getAttribute('data-fullsrc') || img.src,
+                        alt: img.alt || ''
+                    };
+                }).filter(item => item !== null);
+                
+                let currentImageIndex = 0;
 
-                    // Use data-fullsrc if provided so you can load a small thumbnail
-                    // in the gallery and a larger image in the lightbox.
-                    const fullSrc = img.getAttribute('data-fullsrc') || img.src;
-
-                    img.addEventListener('click', () => {
-                        lightboxImg.src = fullSrc;
-                        lightboxImg.alt = img.alt || '';
-                        lightbox.classList.add('is-visible');
-                        document.body.style.overflow = 'hidden';
+                // Add click handlers to all images
+                allImages.forEach((imageData, index) => {
+                    imageData.element.addEventListener('click', () => {
+                        currentImageIndex = index;
+                        openLightbox();
                     });
                 });
 
-                const closeLightbox = () => {
-                    lightbox.classList.remove('is-visible');
-                    lightboxImg.src = '';
-                    document.body.style.overflow = '';
-                };
+                function openLightbox() {
+                    const currentImg = allImages[currentImageIndex];
+                    lightboxImg.src = currentImg.fullSrc;
+                    lightboxImg.alt = currentImg.alt;
+                    lightbox.classList.add('is-visible');
+                    document.body.style.overflow = 'hidden';
+                    updateLightboxNav();
+                }
 
+                function closeLightbox() {
+                    lightbox.classList.remove('is-visible');
+                    document.body.style.overflow = '';
+                    setTimeout(() => {
+                        lightboxImg.src = '';
+                    }, 300);
+                }
+
+                function showNextImage() {
+                    if (currentImageIndex < allImages.length - 1) {
+                        currentImageIndex++;
+                        openLightbox();
+                    }
+                }
+
+                function showPrevImage() {
+                    if (currentImageIndex > 0) {
+                        currentImageIndex--;
+                        openLightbox();
+                    }
+                }
+
+                function updateLightboxNav() {
+                    if (lightboxPrev && lightboxNext) {
+                        lightboxPrev.disabled = currentImageIndex === 0;
+                        lightboxNext.disabled = currentImageIndex === allImages.length - 1;
+                    }
+                }
+
+                // Event listeners
                 lightboxClose.addEventListener('click', closeLightbox);
+                
+                if (lightboxPrev) {
+                    lightboxPrev.addEventListener('click', showPrevImage);
+                }
+                
+                if (lightboxNext) {
+                    lightboxNext.addEventListener('click', showNextImage);
+                }
+
                 lightbox.addEventListener('click', (e) => {
-                    if (e.target === lightbox) closeLightbox();
-                });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && lightbox.classList.contains('is-visible')) {
+                    if (e.target === lightbox) {
                         closeLightbox();
+                    }
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (!lightbox.classList.contains('is-visible')) return;
+                    
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
                     }
                 });
             }
