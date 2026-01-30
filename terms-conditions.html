@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - K.A.R Holdings</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+            margin-top: 120px;
+            padding: 6rem 0 5rem;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 5% 0%, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+                radial-gradient(circle at 95% 100%, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+                linear-gradient(120deg, #fffaf0 0%, #f6f1e1 40%, #e4dbb5 100%);
+            color: var(--dark-color);
+        }
+        .page-hero-inner {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .page-hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--heading-color);
+        }
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .terms-section {
+            padding: 5rem 0;
+        }
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .terms-intro {
+            font-size: 1.125rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(155, 141, 78, 0.2);
+        }
+        .terms-content {
+            background: white;
+            padding: 3.5rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+        }
+        .terms-section-item {
+            margin-bottom: 2.5rem;
+        }
+        .terms-section-item:last-child {
+            margin-bottom: 0;
+        }
+        .terms-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .terms-section-title::before {
+            content: "";
+            width: 4px;
+            height: 24px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        .terms-section-content {
+            font-size: 1.0625rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-left: 1.5rem;
+        }
+        .terms-section-content p {
+            margin-bottom: 1rem;
+        }
+        .terms-section-content p:last-child {
+            margin-bottom: 0;
+        }
+        .terms-section-content strong {
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        .terms-contact {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(155, 141, 78, 0.2);
+            text-align: center;
+        }
+        .terms-contact p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        .terms-contact a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+        .terms-contact a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .page-hero-title {
+                font-size: 2.5rem;
+            }
+            .terms-content {
+                padding: 2rem 1.5rem;
+            }
+            .terms-section-title {
+                font-size: 1.25rem;
+            }
+            .terms-section-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <span><i class="fas fa-map-marker-alt"></i> Western Canada</span>
+                    <span><i class="fas fa-phone"></i> +1 780-485-0055</span>
+                    <span><i class="fas fa-envelope"></i> edm@karholdings.ca</span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+                        <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 75px; margin-right: 10px;">
+                        <h2>K.A.R Holdings</h2>
+                    </a>
+                </div>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="dropdown">
+                        <a href="story.html" class="nav-link">About Us <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="story.html">Our Story</a></li>
+                            <li><a href="vision.html">Vision/Mission</a></li>
+                            <li><a href="directors.html">Board Of Directors</a></li>
+                            <li><a href="our-team.html">Management Team</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="index.html#group" class="nav-link">Our Group <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="fuel-retailing.html">Fuel Retailing</a></li>
+                            <li><a href="food-business.html">Food Business</a></li>
+                            <li><a href="consultancy.html">Consultancy</a></li>
+                            <li><a href="property.html">Property Management</a></li>
+                            <li><a href="investment.html">Investment Business</a></li>
+                            <li><a href="convenience.html">Convenience Stores</a></li>
+                            <li><a href="carwash.html">Car Wash</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="partners.html" class="nav-link">Our Partners</a></li>
+                    <li class="dropdown">
+                        <a href="gallery.html" class="nav-link">Gallery <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="gallery.html">Our Shining Stars</a></li>
+                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="our-sites.html">Our Sites</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="careers.html" class="nav-link">Careers <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="careers.html#why-kar">Why K.A.R Group</a></li>
+                            <li><a href="jobs.html">Jobs</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-inner">
+                <h1 class="page-hero-title">Terms and Conditions</h1>
+                <p class="page-hero-subtitle">Please read these Terms and Conditions carefully before using our services</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terms Section -->
+    <section class="terms-section">
+        <div class="container">
+            <div class="terms-container">
+                <div class="terms-intro">
+                    Please read these Terms and Conditions ("Terms") carefully before using the KAR Group website and accessing our back-office solutions. By accessing or using our services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you may not use our services.
+                </div>
+
+                <div class="terms-content">
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Use of Services</h2>
+                        <div class="terms-section-content">
+                            <p><strong>a.</strong> You must be at least 18 years old or the legal age of majority in your jurisdiction to use our services.</p>
+                            <p><strong>b.</strong> You agree to use our services only for lawful purposes and in compliance with all applicable laws and regulations.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Intellectual Property</h2>
+                        <div class="terms-section-content">
+                            <p><strong>a.</strong> The content, design, and intellectual property on our website are owned by or licensed to KAR Group. You may not reproduce, modify, distribute, or republish any part of our website without our prior written consent.</p>
+                            <p><strong>b.</strong> Any trademarks, logos, or service marks displayed on our website are the property of their respective owners.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Disclaimer</h2>
+                        <div class="terms-section-content">
+                            <p><strong>a.</strong> While we strive to provide accurate and up-to-date information, we do not warrant the completeness, reliability, or accuracy of any content on our website.</p>
+                            <p><strong>b.</strong> Our services are provided on an "as is" and "as available" basis without any warranties, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Limitation of Liability</h2>
+                        <div class="terms-section-content">
+                            <p><strong>a.</strong> To the extent permitted by law, KAR Group and its affiliates, directors, officers, employees, or agents shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of our services.</p>
+                            <p><strong>b.</strong> In no event shall our total liability exceed the fees paid by you, if any, for the use of our services.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Third-Party Links</h2>
+                        <div class="terms-section-content">
+                            <p><strong>a.</strong> Our website may contain links to third-party websites or services. We do not endorse or assume any responsibility for the content, privacy policies, or practices of these third parties.</p>
+                            <p><strong>b.</strong> You acknowledge and agree that your use of any third-party websites or services is at your own risk.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Modification and Termination</h2>
+                        <div class="terms-section-content">
+                            <p>We reserve the right to modify or terminate our services or these Terms at any time without prior notice. Your continued use of our services after any modifications to these Terms constitutes acceptance of the updated Terms.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Governing Law</h2>
+                        <div class="terms-section-content">
+                            <p>These Terms shall be governed by and construed in accordance with the laws of Jurisdiction of Courts in Canada. Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts in Pakistan.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Severability</h2>
+                        <div class="terms-section-content">
+                            <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-section-item">
+                        <h2 class="terms-section-title">Entire Agreement</h2>
+                        <div class="terms-section-content">
+                            <p>These Terms constitute the entire agreement between you and KAR Group regarding your use of our services and supersede any prior agreements or understandings.</p>
+                        </div>
+                    </div>
+
+                    <div class="terms-contact">
+                        <p>Please review these Terms regularly, as they may be updated from time to time. If you have any questions or concerns about these Terms, please contact us at:</p>
+                        <p><a href="mailto:info@karholdings.ca"><i class="fas fa-envelope"></i> info@karholdings.ca</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="logo.png" alt="K.A.R Holdings Logo" style="height: 80px; margin-bottom: 1rem;">
+                    <h3>K.A.R Holdings</h3>
+                    <p>Building excellence across Western Canada</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="partners.html">Our Partners</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="story.html">Our Story</a></li>
+                        <li><a href="vision.html">Our Vision</a></li>
+                        <li><a href="vision.html">Our Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2023 K.A.R Group. | All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="terms-conditions.html">Terms and Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
