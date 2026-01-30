@@ -276,7 +276,7 @@
                         <a href="gallery.html" class="nav-link active">Gallery <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="gallery.html">Our Shining Stars</a></li>
-                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="employees-foreign-trips.html">Corporate Retreat</a></li>
                             <li><a href="our-sites.html">Our Sites</a></li>
                         </ul>
                     </li>
@@ -831,22 +831,25 @@
                     dots.forEach((dot, index) => {
                         dot.classList.toggle('active', index === currentSlide);
                     });
-                    prevBtn.disabled = currentSlide === 0;
-                    nextBtn.disabled = currentSlide === slides.length - 1;
+                    // Don't disable buttons for looping slider
+                    prevBtn.disabled = false;
+                    nextBtn.disabled = false;
                 }
 
                 function nextSlide() {
-                    if (currentSlide < slides.length - 1) {
-                        currentSlide++;
-                        updateSlider();
+                    currentSlide++;
+                    if (currentSlide >= slides.length) {
+                        currentSlide = 0; // Loop back to start
                     }
+                    updateSlider();
                 }
 
                 function prevSlide() {
-                    if (currentSlide > 0) {
-                        currentSlide--;
-                        updateSlider();
+                    currentSlide--;
+                    if (currentSlide < 0) {
+                        currentSlide = slides.length - 1; // Loop to end
                     }
+                    updateSlider();
                 }
 
                 function goToSlide(index) {
@@ -857,12 +860,7 @@
 
                 function startAutoPlay() {
                     autoPlayInterval = setInterval(() => {
-                        if (currentSlide < slides.length - 1) {
-                            nextSlide();
-                        } else {
-                            currentSlide = 0;
-                            updateSlider();
-                        }
+                        nextSlide(); // nextSlide() now handles looping automatically
                     }, 2000);
                 }
 

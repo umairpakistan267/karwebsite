@@ -481,7 +481,7 @@
                         <a href="gallery.html" class="nav-link active">Gallery <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="gallery.html">Our Shining Stars</a></li>
-                            <li><a href="employees-foreign-trips.html">Employees Foreign Trips</a></li>
+                            <li><a href="employees-foreign-trips.html">Corporate Retreat</a></li>
                             <li><a href="our-sites.html">Our Sites</a></li>
                         </ul>
                     </li>
@@ -798,9 +798,9 @@
                         dot.classList.toggle('active', index === currentIndex);
                     });
                     
-                    // Update nav buttons
-                    prevBtn.disabled = currentIndex === 0;
-                    nextBtn.disabled = currentIndex >= totalSlides - 1;
+                    // Don't disable buttons for looping slider
+                    prevBtn.disabled = false;
+                    nextBtn.disabled = false;
                 }
                 
                 function goToSlide(index) {
@@ -809,17 +809,19 @@
                 }
                 
                 function nextSlide() {
-                    if (currentIndex < totalSlides - 1) {
-                        currentIndex++;
-                        updateSlider();
+                    currentIndex++;
+                    if (currentIndex >= totalSlides) {
+                        currentIndex = 0; // Loop back to start
                     }
+                    updateSlider();
                 }
                 
                 function prevSlide() {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        updateSlider();
+                    currentIndex--;
+                    if (currentIndex < 0) {
+                        currentIndex = totalSlides - 1; // Loop to end
                     }
+                    updateSlider();
                 }
                 
                 nextBtn.addEventListener('click', nextSlide);
@@ -846,8 +848,11 @@
                     const diff = startX - endX;
                     
                     if (Math.abs(diff) > 50) {
-                        if (diff > 0) nextSlide();
-                        else prevSlide();
+                        if (diff > 0) {
+                            nextSlide(); // Swipe left = next
+                        } else {
+                            prevSlide(); // Swipe right = previous
+                        }
                     }
                 });
                 
