@@ -36,8 +36,11 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--white);
+    background-color: var(--gradient-hero);
+    background: var(--gradient-hero);
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 .container {
@@ -382,6 +385,8 @@ body {
     padding-top: 160px;
     overflow: hidden;
     animation: gradientShift 15s ease infinite;
+    width: 100%;
+    max-width: 100%;
 }
 
 @keyframes gradientShift {
@@ -462,6 +467,8 @@ body {
     bottom: 0;
     z-index: 0;
     overflow: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Hero Background Slider */
@@ -470,17 +477,21 @@ body {
     inset: 0;
     overflow: hidden;
     z-index: 0;
+    width: 100%;
+    max-width: 100%;
 }
 
 .hero-slide {
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 1.2s ease-in-out;
     transform: scale(1.05);
+    min-height: 100%;
+    width: 100%;
 }
 
 .hero-slide.active {
@@ -706,6 +717,7 @@ body {
     border-radius: 50px;
     font-size: 0.875rem;
     font-weight: 600;
+    margin-top: 3rem;
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease 0.2s both, slideInLeft 1.5s ease 0.5s both;
     letter-spacing: 1px;
