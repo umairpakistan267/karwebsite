@@ -1578,6 +1578,31 @@ section {
     font-size: 1rem;
 }
 
+.leadership-grid > a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.leadership-grid > a:hover .leader-card {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-xl);
+}
+
+.leadership-grid > a:hover .leader-card::after {
+    transform: scaleX(1);
+}
+
+.leadership-grid > a:hover .leader-image {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.leadership-grid > a:hover .leader-image::before {
+    opacity: 0.3;
+    filter: blur(10px);
+}
+
 /* Partners Section */
 .partners {
     background: var(--white);
