@@ -1409,6 +1409,28 @@ section {
     font-size: 1.0625rem;
 }
 
+.services-grid > a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.services-grid > a:hover .service-card {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(37, 99, 235, 0.15);
+    border-color: var(--primary-color);
+}
+
+.services-grid > a:hover .service-card::before {
+    transform: scaleX(1);
+}
+
+.services-grid > a:hover .service-icon {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
+
 /* Leadership Section */
 .leadership {
     background: var(--light-color);
